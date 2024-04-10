@@ -1,0 +1,19 @@
+{
+  "name": "web-framework-project",
+  "version": "1.0.0",
+  "description": "project for the Web Frameowkr Project course",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paananen Sara-Sofia, Quashigah Edem, Duhhanina Marika",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.1",
+    "nodemon": "^3.1.0"
+  }
+}
