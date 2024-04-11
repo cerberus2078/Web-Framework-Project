@@ -1,0 +1,19 @@
+/* Default styles */
+body {
+    color: #000;
+    background-color: #fff;
+}
+
+/* High-contrast styles */
+.high-contrast {
+    color: #fff;
+    background-color: #000;
+}
+
+/* usefull links:
+https://blog.logrocket.com/boost-accessibility-high-contrast-users-css/
+http://www.colorsontheweb.com/color-theory/color-contrast
+https://www.perkins.org/resource/choosing-high-contrast-color-schemes-for-low-vision/
+https://www.chhs.colostate.edu/accessibility/best-practices-how-tos/color-contrast/
+
+ */
