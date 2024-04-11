@@ -1,31 +1,31 @@
 {
-    id: 1
-    firstName: 'Brian'
-    lastName: 'Reinhardt'
-    email: 'brian1972@gmail.com'
+    id: 1,
+    firstName: 'Brian',
+    lastName: 'Reinhardt',
+    email: 'brian1972@gmail.com',
     phoneNumber: '+358040009328'
 }
 
 {
-    id: 2
-    firstName: 'Koli'
-    lastName: 'Bootmaker'
-    email: 'kolib@gmail.com'
+    id: 2,
+    firstName: 'Koli',
+    lastName: 'Bootmaker',
+    email: 'kolib@gmail.com',
     phoneNumber: '+35804008299'
 }
 
 {
-    id: 3
-    firstName: 'Malong'
-    lastName: 'Dig'
-    email: 'malongdig@mail.com'
+    id: 3,
+    firstName: 'Malong',
+    lastName: 'Dig',
+    email: 'malongdig@mail.com',
     phoneNumber: '+358042309810'
 }
 
 {
-    id: 4
-    firstName: 'Rosa'
-    lastName: 'Acrey'
-    email: 'rosa123@mail.com'
+    id: 4,
+    firstName: 'Rosa',
+    lastName: 'Acrey',
+    email: 'rosa123@mail.com',
     phoneNumber: '+358042128394'
 }
