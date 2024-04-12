@@ -39,6 +39,7 @@ a:hover{
 /* footer */
 .footer {
     padding: 40px;
+    margin-top: 70px;
     text-align: center;
     background: #F1EAA3;
     color: #ad4b28;
@@ -93,6 +94,56 @@ a:hover{
     font-weight: bold;
 }
 
+/* home page */
+.home-page{
+    margin: 20px;
+}
+
+.picture-with-button{
+    justify-content: center;
+}
+
+.cool-picture{
+    height: 20vh;
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.white-overlay{
+    background-color: #fff;
+    justify-content: center;
+    display: flex;
+    position: absolute;
+    transform: translate(45%, -90%);
+    width: 50%;
+    height: 10%;
+    border-radius: 10px;
+    box-shadow: 0 6px 5px -5px rgb(167, 167, 167);
+}
+
+.fill-up-booking-form-button{
+    background-color: #B6F0FC;
+    color: black;
+    margin: 0 auto;
+	border: none;
+	padding: 10 px;
+    width: 40%;
+    border-radius: 5px;
+	font: inherit;
+    font-size: 30px;
+	cursor: pointer;
+	outline: inherit;
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    transform: translate(69%, -110%);
+}
+
+.fill-up-booking-form-button:hover{
+    background-color: #a1e7f5;
+    color: black;
+}
 
 
 
