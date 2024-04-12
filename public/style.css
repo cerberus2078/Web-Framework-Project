@@ -4,7 +4,7 @@ html {
 
 body {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-height: 100vh;
+    max-height: 100vh;
     background-color: white;
 }
 
@@ -17,7 +17,7 @@ a:hover{
     color: #6f2c14;
 }
 
-
+/* header */
 .header {
     padding: 20px;
     text-align: center;
@@ -28,13 +28,50 @@ a:hover{
     justify-content: space-between;
   }
 
-.logo-header{
+.logo-header-footer{
     max-width:200px;
 }
 
 .right-side-header{
     padding-top: 10px;
 }
+
+/* footer */
+.footer {
+    padding: 40px;
+    text-align: center;
+    background: #F1EAA3;
+    color: #ad4b28;
+    font-size: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+.flex-gap{
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+.info-text{
+    color: #000;
+    padding-bottom: 10px;
+}
+
+.support-email-phone{
+    color: #8D7653;
+}
+
+.copyright-text{
+    background-color: #F1EAA3;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    color: #8D7653;
+    font-size: 20px;
+}
+
 
 #toggle-high-contrast{
     background: none;
@@ -59,10 +96,40 @@ a:hover{
 
 
 
-
-
-/* high-contrast style (requires js) */
+/* high-contrast mode (requires js) */
 .high-contrast {
     color: #fff;
     background-color: #000;
+}
+
+
+/* for phones */
+@media only screen and (max-width: 800px) {
+    body{
+        font-size: 24px;
+    }
+
+    .header {
+        padding: 15px;
+        text-align: center;
+        background: #F1EAA3;
+        color: #ad4b28;
+        font-size: 30px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .footer {
+        padding: 30px;
+        text-align: center;
+        font-size: 30px;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .flex-gap{
+        padding: 20px;
+    }
 }

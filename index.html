@@ -4,18 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel</title>
-    <!-- the line of code bellow is for the favicon (the icon in the browser tab) -->
-    <!-- to-do: find or create an icon for the hotel favicon -->
-    <!-- <link rel="icon" type="image/x-icon" href="/images/favicon.ico"> --> 
+    <link rel="icon" type="image/x-icon" href="./public/favicon.png"> 
     <link rel="stylesheet" href="./public/style.css">
 </head>
 <body>
+    <!-- header -->
     <div class="header">
-        <a href="#"><img class="logo-header" src="./public/logo2.png"></a>
+        <a aria-label="SynnySideSuncastle logo" href="/"><img class="logo-header-footer" src="./public/logo2.png"></a>
         <div class="right-side-header">
             <button id="toggle-high-contrast">High Contrast Mode</button>
             <a class="login-page-button" href="#">Login</a>
         </div>
+    </div>
+
+    <!-- page content -->
+    <h1 style="height: 100 px;">page content</h1>
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="flex-gap-1 flex-gap"><a aria-label="SunnySideSuncastle logo" href="/"><img class="logo-header-footer" src="./public/logo2.png"></a></div>
+        <div class="flex-gap-2 flex-gap">
+            <div class="info-text">About SSS</div>
+            <div><a class="about-us-page-button" href="#">About Us</a></div>
+            <div><a class="faq-page-button" href="#">FAQ</a></div>
+        </div>
+        <div class="flex-gap-3 flex-gap">
+            <div class="info-text">Contact Us</div>
+            <div><a class="support-email-phone" href="support@ssshotel.com">support@ssshotel.com</a></div>
+            <div><a class="support-email-phone" href="#">+ 92348012938</a></div>
+        </div>
+    </div>
+    <div class="copyright-text">
+        &copy Sunny Side Sandcastle. All rights reserved
     </div>
 </body>
 </html>
