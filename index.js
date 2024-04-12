@@ -5,59 +5,46 @@ const app = express();
 
 require('dotenv').config();
 const dbURI ='mongodb+srv://'+process.env.DBUSERNAME+':'+process.env.DBPASSWORD+'@'+process.env.CLUSTER+'.mongodb.net/'+process.env.DB+'?retryWrites=true&w=majority&appName=Cluster0';
-console.log(dbURI);
-mongoose.connect(dbURI)
-.then((result) => {
-    console.log('Connected to DB');
-})
-.catch((err) => {
-    console.log(err);
-});
+// console.log(dbURI);
+ mongoose.connect(dbURI)
 
 const users = require('./models/users');
 
+/*
 const newUser = new users({
     firstName: 'Sara',
     lastName: 'Paananen',
     email: 'sara1812@student.hamk.fi',
     phoneNumber: '0400235027'
 });
-
 newUser.save();
-
-
+.then((result) => {
+    console.log('Connected to DB');
+})
+.catch((err) => {
+    console.log(err);
+});
+*/
 /*
-let users =
-[
-{
-    id: 1,
-    firstName: 'Brian',
-    lastName: 'Reinhardt',
-    email: 'brian1972@gmail.com',
-    phoneNumber: '+358040009328'
-},
-{
-    id: 2,
-    firstName: 'Koli',
-    lastName: 'Bootmaker',
-    email: 'kolib@gmail.com',
-    phoneNumber: '+35804008299'
-},
-{
-    id: 3,
-    firstName: 'Malong',
-    lastName: 'Dig',
-    email: 'malongdig@mail.com',
-    phoneNumber: '+358042309810'
-},
-{
-    id: 4,
-    firstName: 'Rosa',
-    lastName: 'Acrey',
-    email: 'rosa123@mail.com',
-    phoneNumber: '+358042128394'
-}
-] */
+users.find()
+.then((result) =>{
+    console.log(result);
+})
+*/
+
+const getAll = async () => {
+    try {
+        const results = await users.find();
+        console.log(results);
+    }
+    catch(error){
+        console.log(error);
+    }
+};
+
+// getAll();
+
+
 
 // Main layout that we'll have for each page
 app.engine('handlebars',exphbs.engine({
@@ -82,13 +69,26 @@ app.get('/admin', (req,res) => {
     {
         title:'Admin',
         companyName: 'SSS',
-        users: users
+        users: users.map(doc => doc.toJSON())
     }
     );
 });
 
-
-
+// Get booking page
+app.get('/booking', (req,res) => {
+    res.render('booking',
+    {
+        title:'Booking',
+        companyName: 'SSS'
+    }
+    );
+});
+// Route for creating the resourse
+app.post('/users', (req,res) => {
+    const user = new user(req.body);
+    newUser.save();
+    res.send('/thank-you');
+});
 
 
 
