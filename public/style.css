@@ -209,21 +209,6 @@ h2{
     background: #2a8eb9;
 }
 
-/* this was a bad idea */
-/* .sign-up-in-button{
-    background: #71caf0;
-	color: rgb(0, 0, 0);
-	border: none;
-    border-radius: 10px;
-	padding: 10px;
-    font-size: 20px;
-	cursor: pointer;
-}
-
-.sign-up-in-button:hover{
-    background: #66bce1;
-} */
-
 .field{
     width: 200px;
     height: 50px;
@@ -233,6 +218,27 @@ h2{
     display: flex;
     justify-content: center;
     margin: 30px;
+}
+
+
+.admin-page-container{
+    background-color: #B6F0FC;
+    width: 40vw;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto; 
+    text-align: center;
+    padding-top: 10vh;
+    padding-bottom: 5vh;
+}
+
+.admin-container{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
