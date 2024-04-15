@@ -43,7 +43,7 @@ a:hover{
     text-align: center;
     background: #F1EAA3;
     color: #ad4b28;
-    font-size: 30px;
+    font-size: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -112,8 +112,8 @@ a:hover{
 
 .white-overlay{
     background-color: #fff;
-    justify-content: center;
     display: flex;
+    justify-content: center;
     position: absolute;
     transform: translate(45%, -90%);
     width: 50%;
@@ -165,6 +165,76 @@ h2{
     background-color: #a1e7f5;
     color: black;
 }
+
+.login-page-container{
+    background-color: #B6F0FC;
+    width: 40vw;
+    height: 48vh;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto; 
+    text-align: center;
+    padding-top: 10vh;
+}
+
+.login-container{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-in-text{
+    font-size: 24px;
+}
+
+.no-account{
+    font-size: 18px;
+    margin: 20px;
+    margin-top: 40px;
+}
+
+.continue-button{
+    background: #2F9AC8;
+	color: white;
+	border: none;
+    border-radius: 10px;
+	padding: 10px;
+    font-size: 20px;
+	cursor: pointer;
+}
+
+.continue-button:hover{
+    background: #2a8eb9;
+}
+
+/* this was a bad idea */
+/* .sign-up-in-button{
+    background: #71caf0;
+	color: rgb(0, 0, 0);
+	border: none;
+    border-radius: 10px;
+	padding: 10px;
+    font-size: 20px;
+	cursor: pointer;
+}
+
+.sign-up-in-button:hover{
+    background: #66bce1;
+} */
+
+.field{
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    color: rgb(44, 43, 43);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+}
+
 
 
 
