@@ -25,8 +25,8 @@ const User = require("./models/User");
 /*
 // HARDCODED NEW USER (DELETE LATER)
 const newUser = new User({
-  id: 1,
-  firstName: "Edem",
+  userID: 2,
+  firstName: "Second Edem",
   lastName: "Reinhardt",
   email: "brian1972@gmail.com",
   phoneNumber: "+358040009328",
@@ -41,9 +41,7 @@ newUser
   .catch((err) => {
     console.log(err);
   });
-
-  */
-
+*/
 /*
 // Getting all the items in the database
 User.find().then((result) => {
@@ -65,10 +63,11 @@ const getAll = async () => {
 
 // FIND ONE BY ID
 
-app.get("/users/:id", async (req, res) => {
-  const id = req.params.id;
-  const user = await User.findById(id);
-  res.json(user);
+app.get("/users/:userID", async (req, res) => {
+  const id = req.params.userID;
+  const user = await User.findById(userID);
+  const user2 = await User.find(userID);
+  res.json(user2);
 });
 
 // // FIND ONE BY FIRSTNAME
