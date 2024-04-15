@@ -1,7 +1,7 @@
 {
   "name": "web-framework-project",
   "version": "1.0.0",
-  "description": "project for the Web Frameowkr Project course",
+  "description": "Backend Web Framework Project",
   "main": "index.js",
   "scripts": {
     "start": "node index",
@@ -13,6 +13,8 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "mongodb": "^6.5.0",
     "mongoose": "^8.3.1",
     "nodemon": "^3.1.0"
   }
