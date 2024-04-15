@@ -95,7 +95,7 @@ a:hover{
 }
 
 /* home page */
-.home-page{
+.upper-part-page{
     margin: 20px;
 }
 
@@ -140,10 +140,32 @@ a:hover{
     transform: translate(69%, -110%);
 }
 
+h2{
+    margin-left: 80px;
+}
+
+.popular-options{
+    margin-top:60px;
+}
+
+.rooms-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.room{
+    margin-top: 20px;
+    background-color: #B6F0FC;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+}
+
 .fill-up-booking-form-button:hover{
     background-color: #a1e7f5;
     color: black;
 }
+
 
 
 
