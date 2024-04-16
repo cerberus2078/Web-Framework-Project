@@ -66,7 +66,7 @@ newUser
 // };
 
 // USER CRUD FUNCTIONS
-User.createNewUser(5, "Final", "Fantasy", "final@fantasy.com", "+3581234567");
+// User.createNewUser(5, "Final", "Fantasy", "final@fantasy.com", "+3581234567");
 // User.getOneUser(2);
 // User.getAll();
 
