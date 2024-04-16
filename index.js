@@ -25,13 +25,13 @@ mongoose
 const User = require("./models/User");
 
 // USER CRUD FUNCTIONS
-User.createNewUser(
-  7,
-  "FINALFinal",
-  "Fantasy",
-  "final@fantasy.com",
-  "+3581234567"
-);
+// User.createNewUser(
+//   7,
+//   "FINALFinal",
+//   "Fantasy",
+//   "final@fantasy.com",
+//   "+3581234567"
+// );
 // User.getOneUser(2);
 // User.getAll();
 
