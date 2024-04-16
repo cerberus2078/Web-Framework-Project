@@ -22,7 +22,7 @@ mongoose
   });
 
 // Import the User schema
-const User = require("./models/users");
+const User = require("./models/User");
 
 /*
 // HARDCODED NEW USER (DELETE LATER)
