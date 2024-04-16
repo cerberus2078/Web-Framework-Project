@@ -5,7 +5,7 @@ require("dotenv").config(); // Import the dotenv
 
 const app = express(); // Start the server by Creating the express module
 
-app.use(express.urlencoded({extended: false})); // Get the data of the form to be able to pass and use it
+app.use(express.urlencoded({ extended: false })); // Get the data of the form to be able to pass and use it
 
 // Connect to the mongodb database
 const dbURI = `mongodb+srv://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@${process.env.CLUSTER}.mongodb.net/${process.env.DB}?retryWrites=true&w=majority&appName=Cluster0`;
@@ -22,28 +22,8 @@ mongoose
   });
 
 // Import the User schema
-const User = require("./models/users");
+const User = require("./models/User");
 
-/*
-// HARDCODED NEW USER (DELETE LATER)
-const newUser = new User({
-  userID: 2,
-  firstName: "Second Edem",
-  lastName: "Reinhardt",
-  email: "brian1972@gmail.com",
-  phoneNumber: "+358040009328",
-});
-
-// SAVE THE NEW USER TO THE DATABASE
-newUser
-  .save()
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-*/
 // // GET ALL ITEMS IN THE DATABASE
 // const getAll = async () => {
 //   try {
@@ -114,7 +94,7 @@ app.get("/adminpage", (req, res) => {
 });
 
 // Adding users to the adminpage
-app.get('/users', async (req,res) => {
+app.get("/users", async (req, res) => {
   try {
     const users = await User.find();
     res.json(users);
@@ -123,32 +103,28 @@ app.get('/users', async (req,res) => {
   }
 });
 
-
 // Get booking page information where the user puts their own information (CRUD -> CREATE)
-app.get('/booking', (req,res) => {
-  res.render('booking',
-  {
-      title:'Booking',
-      companyName: 'SSS'
-  }
-  );
+app.get("/booking", (req, res) => {
+  res.render("booking", {
+    title: "Booking",
+    companyName: "SSS",
+  });
 });
 
 // Route for thank-you page
-app.get('/thank-you', (req, res) => {
-  res.render('thank-you', {
-    title: 'Thank You',
-    companyName:'Sunny Side Sandcastle'
+app.get("/thank-you", (req, res) => {
+  res.render("thank-you", {
+    title: "Thank You",
+    companyName: "Sunny Side Sandcastle",
   });
 });
 
 // Route for creating the user and sending them to a thank you page where they can still edit/delete their information (if we have time to implement it)
-app.post('/users', async (req,res) => {
+app.post("/users", async (req, res) => {
   const newUser = new User(req.body);
   await newUser.save();
-  res.redirect('/thank-you');
+  res.redirect("/thank-you");
 });
-
 
 // Set the folder for static files (css, jpg)
 app.use(express.static("public"));
@@ -161,7 +137,3 @@ app.use((req, res, next) => {
   });
 });
 */
-
-
-
-
