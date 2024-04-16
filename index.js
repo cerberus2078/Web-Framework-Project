@@ -61,13 +61,28 @@ const getAll = async () => {
 
 // getAll();
 
+// // FIND ONE BY userID FUNCTION
+// const getOneUser = async (id) => {
+//   try {
+//     const user = await User.findOne({ userID: id });
+//     // res.json(user);
+//     console.log(user); // Change to send the data to the page
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// USER CRUD FUNCTIONS
+// User.getOneUser(2);
+
 // FIND ONE BY ID
 
 app.get("/users/:userID", async (req, res) => {
   const id = req.params.userID;
-  const user = await User.findById(userID);
-  const user2 = await User.find(userID);
-  res.json(user2);
+  const user = await User.getOneUser(2);
+  // const user2 = await User.findOne(userID);
+  res.json(user);
+  // console.log(user)
 });
 
 // // FIND ONE BY FIRSTNAME
