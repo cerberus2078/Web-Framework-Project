@@ -5,6 +5,8 @@ require("dotenv").config(); // Import the dotenv
 
 const app = express(); // Start the server by Creating the express module
 
+app.use(express.urlencoded({extended: false})); // Get the data of the form to be able to pass and use it
+
 // Connect to the mongodb database
 const dbURI = `mongodb+srv://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@${process.env.CLUSTER}.mongodb.net/${process.env.DB}?retryWrites=true&w=majority&appName=Cluster0`;
 
@@ -20,7 +22,7 @@ mongoose
   });
 
 // Import the User schema
-const User = require("./models/User");
+const User = require("./models/users");
 
 /*
 // HARDCODED NEW USER (DELETE LATER)
@@ -42,33 +44,43 @@ newUser
     console.log(err);
   });
 */
-/*
-// Getting all the items in the database
-User.find().then((result) => {
-  console.log(result);
-});
-*/
-
-// GET ALL ITEMS IN THE DATABASE
-const getAll = async () => {
-  try {
-    const result = await User.find();
-    console.log(result);
-  } catch (error) {
-    console.log(error);
-  }
-};
+// // GET ALL ITEMS IN THE DATABASE
+// const getAll = async () => {
+//   try {
+//     const result = await User.find();
+//     console.log(result);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 // getAll();
 
+// // FIND ONE BY userID FUNCTION
+// const getOneUser = async (id) => {
+//   try {
+//     const user = await User.findOne({ userID: id });
+//     // res.json(user);
+//     console.log(user); // Change to send the data to the page
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// USER CRUD FUNCTIONS
+// User.createNewUser(5, "Final", "Fantasy", "final@fantasy.com", "+3581234567");
+// User.getOneUser(2);
+// User.getAll();
+
 // FIND ONE BY ID
 
-app.get("/users/:userID", async (req, res) => {
-  const id = req.params.userID;
-  const user = await User.findById(userID);
-  const user2 = await User.find(userID);
-  res.json(user2);
-});
+// app.get("/users/:userID", async (req, res) => {
+//   const id = req.params.userID;
+//   const user = await User.getOneUser(2);
+//   // const user2 = await User.findOne(userID);
+//   res.json(user);
+//   // console.log(user)
+// });
 
 // // FIND ONE BY FIRSTNAME
 
@@ -88,13 +100,6 @@ app.set("view engine", "handlebars"); // Use handlebars as a template engine
 app.get("/", (req, res) => {
   res.render("index", {
     title: "Home",
-  });
-});
-
-// Render the homepage to the browser (Also set the title for that page)
-app.get("/", (req, res) => {
-  res.render("index", {
-    title: "Home",
     companyName: "Sunny Side Sandcastle",
   });
 });
@@ -108,12 +113,55 @@ app.get("/adminpage", (req, res) => {
   });
 });
 
+// Adding users to the adminpage
+app.get('/users', async (req,res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+
+// Get booking page information where the user puts their own information (CRUD -> CREATE)
+app.get('/booking', (req,res) => {
+  res.render('booking',
+  {
+      title:'Booking',
+      companyName: 'SSS'
+  }
+  );
+});
+
+// Route for thank-you page
+app.get('/thank-you', (req, res) => {
+  res.render('thank-you', {
+    title: 'Thank You',
+    companyName:'Sunny Side Sandcastle'
+  });
+});
+
+// Route for creating the user and sending them to a thank you page where they can still edit/delete their information (if we have time to implement it)
+app.post('/users', async (req,res) => {
+  const newUser = new User(req.body);
+  await newUser.save();
+  res.redirect('/thank-you');
+});
+
+
 // Set the folder for static files (css, jpg)
 app.use(express.static("public"));
 
+/*
 // When no page has been found (404 error)
 app.use((req, res, next) => {
   res.status(404).render("404", {
     title: "404 Error",
   });
 });
+*/
+
+
+
+

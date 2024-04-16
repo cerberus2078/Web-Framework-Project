@@ -1,1 +1,26 @@
-<h1>ADMIN PAGE for {{companyName}} (views/admin.handlebars)</h1>
+
+{{>header}}
+<div class="admin-page-container">
+        <div><h1><h1>ADMIN PAGE for {{companyName}} (views/admin.handlebars)</h1></h1></div>
+        <div class="sign-in-text">You can change your information and user information here</div>
+        <br>
+        <div class="sign-in-text">Your information:</div>
+        <div class="admin-container">
+            <div class="fields">
+                <input class="email field" id="email" placeholder="Email address" type="email" value="" title="">
+                <input class="password field" id="password" placeholder="Password" type="password" value="" title="">
+            </div>
+        </div>
+        <button class="continue-button" type="submit">Save My information</button>
+        <br>
+        <br>
+        <div class="sign-in-text">User information:</div>
+        <br>
+        <!-- Read from CRUD should be here -->
+        <!-- first, we can have just basic user information here: first name, last name, phone, email, dates -->
+        <!-- but if we have time, we can make it so that the page shows the room reservations and it has a button to edit the reservations 
+        and it has all the user data -->
+
+        <button class="continue-button" type="submit">Save User information</button>
+    </div>
+{{>footer}}
