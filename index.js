@@ -42,22 +42,15 @@ newUser
     console.log(err);
   });
 */
-/*
-// Getting all the items in the database
-User.find().then((result) => {
-  console.log(result);
-});
-*/
-
-// GET ALL ITEMS IN THE DATABASE
-const getAll = async () => {
-  try {
-    const result = await User.find();
-    console.log(result);
-  } catch (error) {
-    console.log(error);
-  }
-};
+// // GET ALL ITEMS IN THE DATABASE
+// const getAll = async () => {
+//   try {
+//     const result = await User.find();
+//     console.log(result);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 // getAll();
 
@@ -73,17 +66,19 @@ const getAll = async () => {
 // };
 
 // USER CRUD FUNCTIONS
+User.createNewUser(5, "Final", "Fantasy", "final@fantasy.com", "+3581234567");
 // User.getOneUser(2);
+// User.getAll();
 
 // FIND ONE BY ID
 
-app.get("/users/:userID", async (req, res) => {
-  const id = req.params.userID;
-  const user = await User.getOneUser(2);
-  // const user2 = await User.findOne(userID);
-  res.json(user);
-  // console.log(user)
-});
+// app.get("/users/:userID", async (req, res) => {
+//   const id = req.params.userID;
+//   const user = await User.getOneUser(2);
+//   // const user2 = await User.findOne(userID);
+//   res.json(user);
+//   // console.log(user)
+// });
 
 // // FIND ONE BY FIRSTNAME
 
@@ -98,13 +93,6 @@ app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
 
 // Use handlebars as a template engine
 app.set("view engine", "handlebars"); // Use handlebars as a template engine
-
-// Render the homepage to the browser (Also set the title for that page)
-app.get("/", (req, res) => {
-  res.render("index", {
-    title: "Home",
-  });
-});
 
 // Render the homepage to the browser (Also set the title for that page)
 app.get("/", (req, res) => {
