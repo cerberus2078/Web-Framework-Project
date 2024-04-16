@@ -8,7 +8,7 @@ const dbURI ='mongodb+srv://'+process.env.DBUSERNAME+':'+process.env.DBPASSWORD+
 // console.log(dbURI);
  mongoose.connect(dbURI)
 
-const users = require('./models/users');
+const users = require('./models/User');
 
 /*
 const newUser = new users({
