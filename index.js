@@ -24,51 +24,10 @@ mongoose
 // Import the User schema
 const User = require("./models/User");
 
-// // GET ALL ITEMS IN THE DATABASE
-// const getAll = async () => {
-//   try {
-//     const result = await User.find();
-//     console.log(result);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// getAll();
-
-// // FIND ONE BY userID FUNCTION
-// const getOneUser = async (id) => {
-//   try {
-//     const user = await User.findOne({ userID: id });
-//     // res.json(user);
-//     console.log(user); // Change to send the data to the page
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
 // USER CRUD FUNCTIONS
 // User.createNewUser(5, "Final", "Fantasy", "final@fantasy.com", "+3581234567");
 // User.getOneUser(2);
 // User.getAll();
-
-// FIND ONE BY ID
-
-// app.get("/users/:userID", async (req, res) => {
-//   const id = req.params.userID;
-//   const user = await User.getOneUser(2);
-//   // const user2 = await User.findOne(userID);
-//   res.json(user);
-//   // console.log(user)
-// });
-
-// // FIND ONE BY FIRSTNAME
-
-// app.get("/users/:firstName", async (req, res) => {
-//   const UserFirstName = req.params.firstName;
-//   const user = await User.find({ firstName: UserFirstName });
-//   res.json(user);
-// });
 
 // Specify default layout/ main template ie(main.handlebars)
 app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
