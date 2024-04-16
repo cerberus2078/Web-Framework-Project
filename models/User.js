@@ -23,4 +23,6 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// DABATASE FUNCTIONS HERE (CRUD)
+
 module.exports = mongoose.model("User", userSchema);
