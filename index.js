@@ -28,6 +28,8 @@ const User = require("./models/User");
 // User.createNewUser(5, "Final", "Fantasy", "final@fantasy.com", "+3581234567");
 // User.getOneUser(2);
 // User.getAll();
+User.getOneUser(20); // checking a person with id 20 for testing purposes
+User.updateOneUser(20, "JoeJoe", "Dane", "danedane@gmail.com", "+8932048230"); // change the variables to see the result
 
 // Specify default layout/ main template ie(main.handlebars)
 app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));

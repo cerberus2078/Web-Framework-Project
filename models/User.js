@@ -68,8 +68,33 @@ const getOneUser = async (id) => {
   }
 };
 
-// UPDATE ONE BY USER_ID function
+// UPDATE ONE BY userID function
+
+const updateOneUser = async (
+  userID,
+  firstName,
+  lastName,
+  email,
+  phoneNumber
+) => {
+  try {
+  const updatedUser = await User.findOneAndUpdate(
+    { userID: userID}, 
+    {
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    phoneNumber: phoneNumber
+    
+  }, 
+  {new: true});
+  console.log(updatedUser);
+} catch (error){
+  console.error(error);
+}
+};
+
 
 // DELETE ONE BY USER_ID FUNCTION
 
-module.exports = { User, createNewUser, getAll, getOneUser };
+module.exports = { User, createNewUser, getAll, getOneUser, updateOneUser };
