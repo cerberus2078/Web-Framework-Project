@@ -8,18 +8,41 @@
   <h1>ADMIN PAGE for {{companyName}} (views/admin.handlebars)</h1>
   <ul id="users"></ul>
 <body>
-    <script>
-        fetch('/users')
-      .then(response => response.json())
-      .then(users => {
-        const userList = document.getElementById('users');
-        users.forEach(user => {
-          const listItem = document.createElement('li');
-          listItem.textContent = `${user.firstName}  ${user.lastName} / ${user.email} / ${user.phoneNumber}`;
-          userList.appendChild(listItem);
-        });
-      })
-      .catch(error => console.error('Error fetching users', error));
-    </script>
+    
+{{>header}}
+<div class="admin-page-container">
+        <div><h1><h1>ADMIN PAGE for {{companyName}} (views/admin.handlebars)</h1></h1></div>
+        <div class="sign-in-text">You can change your information and user information here</div>
+        <br>
+        <div class="sign-in-text">Your information:</div>
+        <div class="admin-container">
+            <div class="fields">
+                <input class="email field" id="email" placeholder="Email address" type="email" value="" title="">
+                <input class="password field" id="password" placeholder="Password" type="password" value="" title="">
+            </div>
+        </div>
+        <button class="continue-button" type="submit">Save My information</button>
+        <br>
+        <br>
+        <div class="sign-in-text">User information:</div>
+        <br>
+        <!-- CRUD should be here -->
+        <script>
+            fetch('/users')
+            .then(response => response.json())
+            .then(users => {
+                const userList = document.getElementById('users');
+                users.forEach(user => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${user.firstName}  ${user.lastName} / ${user.email} / ${user.phoneNumber}`;
+                userList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error fetching users', error));
+        </script>
+
+        <button class="continue-button" type="submit">Save User information</button>
+    </div>
+{{>footer}}
 </body>
 </html>
