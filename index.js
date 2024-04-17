@@ -68,6 +68,15 @@ app.get("/adminpage", (req, res) => {
   });
 });
 
+// admin edit users page
+app.get("/admin-edit-user", (req, res) => {
+  res.render("adminedit", {
+    title: "Admin Edit User",
+    companyName: "Sunny Side Sandcastle",
+    // ADD OTHER ITEMS HERE FROM THE DATABASE. (products)
+  });
+});
+
 // Adding users to the adminpage
 app.get("/users", async (req, res) => {
   try {
