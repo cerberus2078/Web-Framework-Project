@@ -21,10 +21,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  roomNumber: {
-    type: String,
-    required: false,
-  },
+  // roomNumber: {
+  //  type: String,
+  //  required: false,
+  // },
   // roomNumber: {
   //   type: String,
   //   required: false,
@@ -36,6 +36,7 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model("User", userSchema);
+
 
 // Database Functions Here (CRUD)
 // GET ALL ITEMS IN THE DATABASE
@@ -152,3 +153,4 @@ module.exports = {
   updateUser,
   deleteOneUser,
 };
+

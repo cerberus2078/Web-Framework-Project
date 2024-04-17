@@ -276,7 +276,22 @@ h2{
     margin: 10px;
 }
 
+.thank-you-page-container{
+    background-color: #B6F0FC;
+    width: 40vw;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto; 
+    text-align: center;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
 
+h3{
+    margin-left: 10px;
+}
 
 
 /* high-contrast mode (requires js) */

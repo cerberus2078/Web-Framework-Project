@@ -5,19 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking form</title>
 </head>
-<h1>Booking form</h1>
 <body>
 {{>header}}
 <div class="booking-page-container">
-    <div><h1>Booking form:</h1></div>
-    <div class="booking-text"><h4>Please fill in all of the fields below.</h4></div>
+    <h1>Booking form</h1>
+    <div class="booking-text"><h4>Please fill in all of the fields below:</h4></div>
     <form method="POST" action="/users">
         <div class="fields">
-        <input class="Id txtField" type="text" placeholder="Id" name="userId"><br>
-        <input class="First Name txtField" type="text" placeholder="First Name" name="firstName"><br>
-        <input class="Last Name txtField" type="text" placeholder="Last Name" name="lastName"><br>
-        <input class="Email txtField" type="text" placeholder="Email" name="email"><br>
-        <input class="Phone Number txtField" type="text" placeholder="Phone Number" name="phoneNumber"><br>
+        <input class="userId txtField" type="text" placeholder="Id" name="userID" required><br>
+        <input class="firstName txtField" type="text" placeholder="First Name" name="firstName" required><br>
+        <input class="lastName txtField" type="text" placeholder="Last Name" name="lastName" required><br>
+        <input class="email txtField" type="text" placeholder="Email" name="email" required><br>
+        <input class="phoneNumber txtField" type="text" placeholder="Phone Number" name="phoneNumber" required><br>
         </div>
         <button class="continue-button" type="submit" value="Submit user information" onclick="/thank-you">Submit</button>        
     </form>
