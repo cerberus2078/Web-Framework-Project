@@ -25,9 +25,18 @@ mongoose
 const User = require("./models/User");
 
 // USER CRUD FUNCTIONS
-// User.createNewUser(5, "Final", "Fantasy", "final@fantasy.com", "+3581234567");
+// User.createNewUser(
+//   10,
+
+//   "UPcrud",
+//   "Fantasy",
+//   "final@fantasy.com",
+//   "+3581234567"
+// );
 // User.getOneUser(2);
 // User.getAll();
+// User.updateUser(10, { firstName: "SECONDUPDATED" });
+// User.deleteOneUser(9);
 
 // Specify default layout/ main template ie(main.handlebars)
 app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
