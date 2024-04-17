@@ -1,5 +1,20 @@
-<h1>Thank you for sending the form!</h1>
-<h2>We will contact you within 24 hours<br>
-You may edit or cancel your booking forms below</h2>
-<button value="Edit your information">Edit Reservation</button>
-<button value="Cancel your reservation">Cancel Reservation</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You! - {{companyName}}</title>
+</head>
+<body>
+    
+{{>header}}
+<div class="thank-you-page-container">
+    <h1>Thank you for sending the form!</h1>
+    <h3>We will contact you within 24 hours<br>
+    You may edit or cancel your booking forms below</h3>
+    <button class="continue-button" value="Edit your information">Edit Reservation</button>
+    <button class="continue-button" value="Cancel your reservation">Cancel Reservation</button>
+</div>
+{{>footer}}
+</body>
+</html>
