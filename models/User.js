@@ -42,7 +42,8 @@ const User = mongoose.model("User", userSchema);
 const getAll = async () => {
   try {
     const result = await User.find();
-    console.log(result);
+    // console.log(result);
+    return result;
   } catch (error) {
     console.log(error);
   }
@@ -70,11 +71,20 @@ const createNewUser = async (
 };
 
 // READ ONE BY userID FUNCTION
+// const getOneUser = async (id) => {
+//   try {
+//     const user = await User.findOne({ userID: id });
+//     // res.json(user);
+//     console.log(user); // Change to send the data to the page
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
 const getOneUser = async (id) => {
   try {
     const user = await User.findOne({ userID: id });
-    // res.json(user);
-    console.log(user); // Change to send the data to the page
+    return user;
   } catch (error) {
     console.log(error);
   }
@@ -103,7 +113,6 @@ const updateUser = async (id, updateData) => {
   }
 };
 
-
 // UPDATE ONE BY userID function - created by Marika idk if it's going to work properly, Edem's code looks better
 // const updateOneUser = async (
 //   userID,
@@ -114,21 +123,20 @@ const updateUser = async (id, updateData) => {
 // ) => {
 //   try {
 //   const updatedUser = await User.findOneAndUpdate(
-//     { userID: userID}, 
+//     { userID: userID},
 //     {
 //     firstName: firstName,
 //     lastName: lastName,
 //     email: email,
 //     phoneNumber: phoneNumber
-    
-//   }, 
+
+//   },
 //   {new: true});
 //   console.log(updatedUser);
 // } catch (error){
 //   console.error(error);
 // }
 // };
-
 
 // DELETE ONE BY USER_ID FUNCTION
 const deleteOneUser = async (id) => {

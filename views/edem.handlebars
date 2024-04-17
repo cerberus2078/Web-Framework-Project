@@ -1,0 +1,29 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ADMIN PAGE for {{companyName}} (views/admin.handlebars)</title>
+    <script src="../index.js"></script>
+
+  </head>
+  <body>
+    <div>
+      <form method="GET" action="/api/user/">
+        <input
+          type="number"
+          id="user_id"
+          name="id"
+          placeholder="Insert user id here"
+        />
+        <button>CLICK ME</button>
+
+      </form>
+    </div>
+
+    <div>
+      <input type="number" id="user_id" placeholder="insert user_id" />
+      <button onclick="sayHello()">Find User</button>
+    </div>
+
+  </body>
+</html>

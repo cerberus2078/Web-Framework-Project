@@ -5,6 +5,7 @@ require("dotenv").config(); // Import the dotenv
 
 const app = express(); // Start the server by Creating the express module
 
+app.use(express.json()); // Get json from the client
 app.use(express.urlencoded({ extended: false })); // Get the data of the form to be able to pass and use it
 
 // Connect to the mongodb database
@@ -46,6 +47,122 @@ app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
 // Use handlebars as a template engine
 app.set("view engine", "handlebars"); // Use handlebars as a template engine
 
+//////////////////////////////////////
+////////-- EDEM'S PLAYGROUND--///////
+///////////////////////////////////////
+// Dummy database (Hardcoded).
+let users = [
+  {
+    id: 1,
+    firstname: "Edem",
+    lastname: "Quashigah",
+    age: 32,
+    ects: 108,
+    enrollmentStatus: true,
+    studentID: 123456,
+  },
+  {
+    id: 2,
+    firstname: "Pekka",
+    lastname: "Kivisto",
+    age: 43,
+    ects: 44,
+    enrollmentStatus: false,
+    studentID: 457443,
+  },
+  {
+    id: 3,
+    firstname: "Antti",
+    lastname: "Kankaanpaa",
+    age: 55,
+    ects: 88,
+    enrollmentStatus: true,
+    studentID: 98765,
+  },
+  {
+    id: 4,
+    firstname: "John",
+    lastname: "Doe",
+    age: 87,
+    ects: 7,
+    enrollmentStatus: false,
+    studentID: 284628,
+  },
+  {
+    id: 5,
+    firstname: "Jane",
+    lastname: "Doe",
+    age: 32,
+    ects: 210,
+    enrollmentStatus: false,
+    studentID: 396472,
+  },
+  {
+    id: 6,
+    firstname: "Harry",
+    lastname: "Potter",
+    age: 10,
+    ects: 99,
+    enrollmentStatus: true,
+    studentID: 698564,
+  },
+];
+
+// Rendering the edem.handlebars file (for testing DELETE LATER)
+app.get("/edem", (req, res) => {
+  res.render("edem", {
+    title: "EDEM",
+    companyName: "Sunny Side Sandcastle",
+    // ADD OTHER ITEMS HERE FROM THE DATABASE. (products)
+  });
+});
+
+function sayHello() {
+  console.log("HELLO FROM THE OTHER SIDE");
+}
+
+// LIST ALL
+app.get("/api/users", async (req, res) => {
+  const id = req.params.id;
+  const users = await User.getAll();
+  const usersString = users.toString();
+  console.log(usersString);
+  res.render("edemusers", {
+    products: usersString.toJSON(),
+  });
+
+  // res.json(users);
+  // console.log(await User.getAll()); // DEBUGGING
+});
+
+app.get("/api/user/:id", async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    const user = await User.getOneUser(id);
+    res.json(user);
+    console.log(user); // DEBUGING
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.get("/api/edem/:id", (req, res) => {
+  try {
+    const id = req.params.id;
+    const user = User.getOneUser(id);
+    res.render("edemusers", {
+      products: user.toJSON(),
+    });
+    console.log(user); // DEBUGING
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//////////////////////////////////////
+////////-- END OF EDEM'S PLAYGROUND--///////
+///////////////////////////////////////
+
 // Render the homepage to the browser (Also set the title for that page)
 app.get("/", (req, res) => {
   res.render("index", {
@@ -54,19 +171,16 @@ app.get("/", (req, res) => {
   });
 });
 
-
 // I tried to fix the images but it didn't work
 // app.get("/", (req, res) => {
-//   imageList = []; 
-//   imageList.push({ src: "logo2.png", name: "logo2" }); 
+//   imageList = [];
+//   imageList.push({ src: "logo2.png", name: "logo2" });
 //   res.render("index", {
 //     imageList: imageList,
 //     title: "Home",
 //     companyName: "Sunny Side Sandcastle",
 //   });
 // });
-
-
 
 // Rendering the admin.handlebars file (Serve as a template for other pages)
 app.get("/adminpage", (req, res) => {
@@ -95,7 +209,6 @@ app.get("/users", async (req, res) => {
     res.status(500).send(err);
   }
 });
-
 
 // Get booking page information where the user puts their own information (CRUD -> CREATE)
 app.get("/booking", (req, res) => {
