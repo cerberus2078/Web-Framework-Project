@@ -25,6 +25,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
+/*
 // Database Functions Here (CRUD)
 // GET ALL ITEMS IN THE DATABASE
 const getAll = async () => {
@@ -73,3 +74,4 @@ const getOneUser = async (id) => {
 // DELETE ONE BY USER_ID FUNCTION
 
 module.exports = { User, createNewUser, getAll, getOneUser };
+*/

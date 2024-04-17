@@ -52,15 +52,17 @@ app.get("/adminpage", (req, res) => {
   });
 });
 
+
 // Adding users to the adminpage
 app.get("/users", async (req, res) => {
   try {
-    const users = await User.find();
-    res.json(users);
+    const user = await User.find();
+    res.json(user);
   } catch (err) {
     res.status(500).send(err);
   }
 });
+
 
 // Get booking page information where the user puts their own information (CRUD -> CREATE)
 app.get("/booking", (req, res) => {
