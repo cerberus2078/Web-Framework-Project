@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const router = require("../doing everything from scratch because I got lost");
 
 const userSchema = new mongoose.Schema({
   userID: {
@@ -145,12 +146,69 @@ const deleteOneUser = async (id) => {
   }
 };
 
+//stopped here
+// update function
+function updateUser(req,res){
+  User.findOneAndUpdate({_id:req.body._id,},req.body,{new:true},(err,doc) => {
+    if(!err){
+      res.redirect('admin')
+    }else{
+      if(err.name == "ValidationError"){
+        handleValidatoinError(err,req.body);
+        res.render("adminedit",{
+          user:req.body
+        });
+      }else{
+        console.log(err);
+      }
+    }
+  })
+}
+
+// read
+router.get('/adminpage',(req,res) => {
+  User.find((err,docs) => {
+    if(!err) {
+      res.render("admin",{
+        user:user
+      }
+      )
+    }
+  })
+})
+
+// update
+router.get('/:id', (req,res) => {
+  User.findById(req.params.id,(err,doc)=>{
+    if(!err){
+      res.render("adminedit",{
+        title: "update",
+        task: doc
+      })
+    }
+  })
+})
+
+// delete
+router.get('/delete/:id', (req,res) => {
+  User.findByIdAndRemove(req.params,id,(err,doc) => {
+    if(!err){
+      res.redirect('/admin');
+    }
+    else{
+      console.log(err);
+    }
+  })
+})
+
+
 module.exports = {
+  router,
   User,
-  createNewUser,
-  getAll,
-  getOneUser,
-  updateUser,
-  deleteOneUser,
+  // createNewUser,
+  // getAll,
+  // getOneUser,
+  // updateUser,
+  // deleteOneUser,
 };
 
