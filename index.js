@@ -1,6 +1,7 @@
 const express = require("express"); // Import Express
 const exphbs = require("express-handlebars"); // Import Express-handlebars
 const mongoose = require("mongoose");
+const router = express.Router();
 require("dotenv").config(); // Import the dotenv
 
 const app = express(); // Start the server by Creating the express module
@@ -67,24 +68,30 @@ app.get("/", (req, res) => {
 // });
 
 
-
-// Rendering the admin.handlebars file (Serve as a template for other pages)
+// // Rendering the admin.handlebars file (Serve as a template for other pages)
 app.get("/adminpage", (req, res) => {
   res.render("admin", {
+    users : User,
     title: "Admin",
     companyName: "Sunny Side Sandcastle",
     // ADD OTHER ITEMS HERE FROM THE DATABASE. (products)
   });
 });
 
-// admin edit users page
-app.get("/admin-edit-user", (req, res) => {
-  res.render("adminedit", {
-    title: "Admin Edit User",
-    companyName: "Sunny Side Sandcastle",
-    // ADD OTHER ITEMS HERE FROM THE DATABASE. (products)
-  });
-});
+
+// figuring out the Read from CRUD
+// router.get("/adminpage", (req, res) => {
+//   try {
+//     res.render("admin", {
+//     users : User,
+//     title: "Admin",
+//     companyName: "Sunny Side Sandcastle"}
+//     )} catch (err) {
+//       console.error(err);
+//     }
+//     // ADD OTHER ITEMS HERE FROM THE DATABASE. (products)
+//   });
+  
 
 
 // --------- testing UPDATE for CRUD (Marika) ---------

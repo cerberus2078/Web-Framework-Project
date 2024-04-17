@@ -24,13 +24,16 @@
         <br>
         <br>
         <div><h2>User information:</h2></div>
+        <ul>
+            {{#each users}}
+            <li>{{firstName}}, {{lastName}}</li>
+            {{/each}}
+        </ul>
         <div class="text">Please enter the id of the user to change their information:</div>
         <br>
         <form class="admin-id-search-form">
         <input>
         </form>
-        <!-- CRUD should be here -->
-        {{!-- Read --}}
         <script>
             fetch('/users')
             .then(response => response.json())
