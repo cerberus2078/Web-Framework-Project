@@ -153,6 +153,8 @@ app.post("/users", async (req, res) => {
   res.redirect("/thank-you");
 });
 
+
+// Route for the page of Room 1
 app.get("/room1", (req, res) => {
   res.render("room1", {
     title: "Room 1",
@@ -160,6 +162,7 @@ app.get("/room1", (req, res) => {
   });
 });
 
+// Route for the page of Room 2
 app.get("/room2", (req, res) => {
   res.render("room2", {
     title: "Room 2",
