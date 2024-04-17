@@ -213,8 +213,22 @@ h2{
 	cursor: pointer;
 }
 
-.continue-button:hover button:hover{
+.continue-button:hover{
     background: #2a8eb9;
+}
+
+.delete-button{
+    background: #b0413f;
+	color: white;
+	border: none;
+    border-radius: 10px;
+	padding: 10px;
+    font-size: 20px;
+	cursor: pointer;
+}
+
+.delete-button:hover{
+    background: #993533;
 }
 
 .field{
@@ -260,6 +274,19 @@ h2{
     text-align: center;
     padding-top: 10vh;
     padding-bottom: 5vh;
+}
+
+.admin-edit-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-date{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .txtField{

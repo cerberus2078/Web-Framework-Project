@@ -86,6 +86,39 @@ app.get("/admin-edit-user", (req, res) => {
   });
 });
 
+
+// --------- testing UPDATE for CRUD (Marika) ---------
+// dummy database for testing
+// let clients = [   
+//   { id: 1, firstName: 'Brian', lastName: 'Reinhardt', email: '123@mail.com', phoneNumber: "+123", checkInDate: "12.02.2023", checkOutDate: "15.02.2023"},
+//   { id: 2, firstName: 'Linda', lastName: 'Home', email: '123@mail.com', phoneNumber: "+123", checkInDate: "16.02.2023", checkOutDate: "20.02.2023"}
+// ];
+
+// admin edit user
+// express.Router.get("/admin-crud-update", async(req, res, next) => {
+//   let user = await User.find({}).exec((err, users) => {
+//     if (users) {
+//       res.render('admin-crud-update', {
+//       title: "Admin Edit User",
+//       companyName: "Sunny Side Sandcastle",
+//       data: users
+//     }
+//     )}
+//   })
+// });
+
+// admin edit users page
+app.get("/admin-crud-update", (req, res) => {
+  res.render("admin-crud-update", {
+    title: "Admin Edit User",
+    companyName: "Sunny Side Sandcastle",
+    // ADD OTHER ITEMS HERE FROM THE DATABASE. (products)
+  });
+});
+
+// --------- end of UPDATE test for CRUD ---------
+
+
 // Adding users to the adminpage
 app.get("/users", async (req, res) => {
   try {

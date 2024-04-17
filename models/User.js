@@ -21,10 +21,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  roomNumber: {
-    type: String,
-    required: false,
-  },
+  // roomNumber: {
+  //   type: String,
+  //   required: false,
+  // },
   // roomNumber: {
   //   type: String,
   //   required: false,
