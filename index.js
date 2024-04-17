@@ -153,6 +153,20 @@ app.post("/users", async (req, res) => {
   res.redirect("/thank-you");
 });
 
+app.get("/room1", (req, res) => {
+  res.render("room1", {
+    title: "Room 1",
+    companyName: "SSS",
+  });
+});
+
+app.get("/room2", (req, res) => {
+  res.render("room2", {
+    title: "Room 2",
+    companyName: "SSS",
+  });
+});
+
 // Set the folder for static files (css, jpg)
 app.use(express.static("public"));
 

@@ -242,6 +242,114 @@ h2{
     margin: 30px;
 }
 
+.room-photos-container{
+    margin: 0 auto;
+    width: 85%;
+    height: 50vh;
+    margin-bottom: 40px;
+}
+
+.room-photos{
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    height: 100%;
+    
+}
+
+.photo1 {
+
+    background-color: #B6F0FC; 
+    border-radius: 10px;
+    grid-row-start: 1;
+    grid-column-start: 1;
+ 
+    grid-row-end: 3;
+    grid-column-end: 3;
+    
+ }
+ .photo2 {
+ 
+    background-color: #B6F0FC;
+    border-radius: 10px;
+    grid-row-start: 1;
+    grid-column-start: 3;
+ 
+    grid-row-end: 2;
+    grid-column-end: 4;
+    
+ }
+ .photo3 {
+ 
+    background-color: #B6F0FC;
+    border-radius: 10px;
+    grid-row-start: 1;
+    grid-column-start: 4;
+ 
+    grid-row-end: 2;
+    grid-column-end: 5;
+    
+ }
+ .photo4 {
+ 
+    background-color: #B6F0FC;
+    border-radius: 10px;
+    grid-row-start: 2;
+    grid-column-start: 3;
+ 
+    grid-row-end: 3;
+    grid-column-end: 4;
+    
+ }
+ .photo5 {
+ 
+    background-color: #B6F0FC;
+    border-radius: 10px;
+    grid-row-start: 2;
+    grid-column-start: 4;
+ 
+    grid-row-end: 3;
+    grid-column-end: 5;
+    
+ }
+
+ .under-pictures-container{
+    width: 70%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: space-around;
+ }
+
+ .room-description{
+    margin-top: 50px;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+ }
+
+ .price-reserve-container{
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+ }
+
+ .price{
+    background-color: #B6F0FC;
+    margin: 10px;
+    padding: 30px;
+    border-radius: 10px;
+ }
 
 .admin-page-container{
     background-color: #B6F0FC;
