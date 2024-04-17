@@ -156,9 +156,15 @@ h2{
     margin-top:60px;
 }
 
-.rooms-container{
+
+.box{
     display: flex;
     justify-content: space-evenly;
+    cursor: pointer;
+}
+
+.room:hover{
+    background-color: #F1EAA3;
 }
 
 .room{
@@ -167,6 +173,16 @@ h2{
     width: 300px;
     height: 300px;
     border-radius: 10px;
+    text-align: center;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: larger;
+    color: black;
 }
 
 .fill-up-booking-form-button:hover{
