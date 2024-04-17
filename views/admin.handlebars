@@ -27,19 +27,6 @@
         <div class="sign-in-text">User information:</div>
         <br>
         <!-- CRUD should be here -->
-        <script>
-            fetch('/users')
-            .then(response => response.json())
-            .then(users => {
-                const userList = document.getElementById('users');
-                users.forEach(user => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${user.firstName}  ${user.lastName} / ${user.email} / ${user.phoneNumber}`;
-                userList.appendChild(listItem);
-                });
-            })
-            .catch(error => console.error('Error fetching users', error));
-        </script>
 
         <button class="continue-button" type="submit">Save User information</button>
     </div>
