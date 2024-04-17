@@ -3,34 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADMIN PAGE for {{companyName}} (views/admin.handlebars)</title>
+    <title>ADMIN PAGE for {{companyName}} (views/adminedit.handlebars)</title>
 </head>
   <ul id="users"></ul>
 <body>
     
 {{>header}}
 <div class="admin-page-container">
-        <div><h1>ADMIN PAGE for {{companyName}} (views/admin.handlebars)</h1></div>
-        <div><h2>You can change your information and user information here</h2></div>
+        <div><h1>ADMIN PAGE for {{companyName}} (views/adminedit.handlebars)</h1></div>
+        <div><h2>You can change the data of the user (id) here:</h2></div>
         <br>
-        <div><h2>Your information:</h2></div>
         <div class="admin-container">
             <div class="fields">
                 <input class="email field" id="email" placeholder="Email address" type="email" value="" title="">
                 <input class="password field" id="password" placeholder="Password" type="password" value="" title="">
             </div>
         </div>
-        <button class="continue-button" type="submit">Save My information</button>
         <br>
-        <br>
-        <div><h2>User information:</h2></div>
-        <div class="text">Please enter the id of the user to change their information:</div>
-        <br>
-        <form class="admin-id-search-form">
-        <input>
-        </form>
-        <!-- CRUD should be here -->
-        {{!-- Read --}}
         <script>
             fetch('/users')
             .then(response => response.json())
@@ -44,7 +33,7 @@
             })
             .catch(error => console.error('Error fetching users', error));
         </script>
-        <button class="continue-button" type="submit">Send</button>
+        <button class="continue-button" type="submit">Save</button>
     </div>
 {{>footer}}
 </body>

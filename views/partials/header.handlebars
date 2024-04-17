@@ -1,9 +1,9 @@
 <header>
     <div class="header">
-        <a aria-label="SynnySideSuncastle logo" href="/"><img class="logo-header-footer" src="../../public/logo2.png"></a>
-        <a aria-label="SynnySideSuncastle logo" href="/"><img class="logo-header-footer" src="public\logo2.png"></a>
-        <a aria-label="SynnySideSuncastle logo" href="/"><img class="logo-header-footer" src="..\..\public\logo2.png"></a>
-        <a aria-label="SynnySideSuncastle logo" href="/"><img class="logo-header-footer" src="{{logoImgURL}}"></a>
+        {{!-- <a aria-label="SynnySideSuncastle logo" href="/"><img class="logo-header-footer" src="../../public/logo2.png"></a> --}}
+        {{!-- this one is supposed to work but it doesnt /\ --}}
+        {{!-- <a aria-label="SynnySideSuncastle logo" href="/"><img class="logo-header-footer" src="{{this.src}}"></a> --}}
+        <a aria-label="SynnySideSuncastle logo" href="/">SunnySideSuncastle<img class="logo-header-footer" src="{{this.src}}"></a>
         <div class="right-side-header">
             <button id="toggle-high-contrast">High Contrast Mode</button>
             <a class="login-page-button" href="#">Login</a>

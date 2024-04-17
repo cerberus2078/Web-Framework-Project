@@ -37,6 +37,8 @@ const User = require("./models/User");
 // User.getAll();
 // User.updateUser(10, { firstName: "SECONDUPDATED" });
 // User.deleteOneUser(9);
+// User.getOneUser(20); // checking a person with id 20 for testing purposes
+// User.updateOneUser(20, "JoeJoe", "Dane", "danedane@gmail.com", "+8932048230"); // change the variables to see the result
 
 // Specify default layout/ main template ie(main.handlebars)
 app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
@@ -52,6 +54,20 @@ app.get("/", (req, res) => {
   });
 });
 
+
+// I tried to fix the images but it didn't work
+// app.get("/", (req, res) => {
+//   imageList = []; 
+//   imageList.push({ src: "logo2.png", name: "logo2" }); 
+//   res.render("index", {
+//     imageList: imageList,
+//     title: "Home",
+//     companyName: "Sunny Side Sandcastle",
+//   });
+// });
+
+
+
 // Rendering the admin.handlebars file (Serve as a template for other pages)
 app.get("/adminpage", (req, res) => {
   res.render("admin", {
@@ -61,6 +77,14 @@ app.get("/adminpage", (req, res) => {
   });
 });
 
+// admin edit users page
+app.get("/admin-edit-user", (req, res) => {
+  res.render("adminedit", {
+    title: "Admin Edit User",
+    companyName: "Sunny Side Sandcastle",
+    // ADD OTHER ITEMS HERE FROM THE DATABASE. (products)
+  });
+});
 
 // Adding users to the adminpage
 app.get("/users", async (req, res) => {

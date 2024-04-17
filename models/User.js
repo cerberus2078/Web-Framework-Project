@@ -104,6 +104,33 @@ const updateUser = async (id, updateData) => {
   }
 };
 
+
+// UPDATE ONE BY userID function - created by Marika idk if it's going to work properly, Edem's code looks better
+// const updateOneUser = async (
+//   userID,
+//   firstName,
+//   lastName,
+//   email,
+//   phoneNumber
+// ) => {
+//   try {
+//   const updatedUser = await User.findOneAndUpdate(
+//     { userID: userID}, 
+//     {
+//     firstName: firstName,
+//     lastName: lastName,
+//     email: email,
+//     phoneNumber: phoneNumber
+    
+//   }, 
+//   {new: true});
+//   console.log(updatedUser);
+// } catch (error){
+//   console.error(error);
+// }
+// };
+
+
 // DELETE ONE BY USER_ID FUNCTION
 const deleteOneUser = async (id) => {
   try {
