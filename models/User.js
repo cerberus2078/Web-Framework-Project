@@ -25,96 +25,107 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-// To use the schema, use 'User' with the uppercase
+// to use the schema, use 'User' with the uppercase
 const User = mongoose.model("User", userSchema);
 
+// read all users and send them to admin page
 router.get('/adminpage', (req, res) => {
-  res.render('admin-crud-update', {
-    title: "Admin Edit Page"
+  User.find((err, users) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Server Error");
+    } else {
+      res.render('admin', {
+        title: "Admin Page",
+        users: users
+      });
+    }
   });
 });
 
+// read one user by id
+// router.get('admin-crud-update/:id', (req,res) => {
+//     User.findById(req.params.userID, (err,users) => {
+//         if(!err){
+//             res.render('admin-crud-update',{
+//                 title: "Update User", // make is to that it shows user id here later
+//                 users: users
+//             })
+//         }
+//     })
+// })
+
+// read one user by id updated
+router.get('/admin-crud-update/:id', (req,res) => {
+    User.findById(req.params.userID, (err,user) => {
+        if(!err && user){
+            res.render('admin-crud-update',{
+                title: "Update User",
+                user: user // Change from 'users' to 'user'
+            });
+        } else {
+            console.error(err);
+            res.status(404).send("User not found");
+        }
+    });
+});
+
+// call functions create user and update user
 router.post('/adminpage', (req, res) => {
-  if (req.body._id == "") {
+  if (req.body.userID == "") {
     createUser(req, res);
   } else {
     updateUser(req, res);
   }
 });
 
-// Create function
+// create a user function
 function createUser(req, res) {
-  var user = new User();
-  user.userID = req.body.userID;
-  user.firstName = req.body.firstName;
-  user.lastName = req.body.lastName;
-  user.email = req.body.email;
-  user.phoneNumber = req.body.phoneNumber;
+  var user = new User({
+    userID: req.body.userID,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    phoneNumber: req.body.phoneNumber
+  });
 
   user.save((err, doc) => {
     if (!err) {
       res.redirect('/adminpage');
     } else {
-      if (err.name == "ValidationError") {
-        handleValidationError(err, req.body);
-        res.render('admin-crud-update', {
-          title: "Admin Edit Page",
-          user: req.body
-        });
-      }
-      console.log(err);
+      console.error(err);
+      res.status(500).send("Server Error");
     }
   });
 }
 
-// Update function
+// update function
 function updateUser(req, res) {
-  User.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+  User.findOneAndUpdate({ userID: req.body.userID }, req.body, { new: true }, (err, doc) => {
     if (!err) {
       res.redirect('/adminpage');
     } else {
-      if (err.name == "ValidationError") {
-        handleValidationError(err, req.body);
-        res.render("admin-crud-update", {
-          user: req.body
-        });
-      } else {
-        console.log(err);
-      }
+        if(err.name == "ValidationError"){
+            handleValidationError(err,req.body);
+            res.render("admin-crud-update", {
+                title: "Update User",
+                user: req.body
+            });
+        }else{
+            console.error(err);
+        }
     }
   });
 }
 
-// Read
-router.get('/adminpage', (req, res) => {
-  User.find((err, docs) => {
-    if (!err) {
-      res.render("admin", {
-        users: docs // Corrected variable name
-      });
-    }
-  });
-});
-
-// Update
-router.get('/:id', (req, res) => {
-  User.findById(req.params.id, (err, doc) => {
-    if (!err) {
-      res.render("admin-crud-update", {
-        title: "update",
-        user: doc // Corrected variable name
-      });
-    }
-  });
-});
-
-// Delete
+// delete user with the id
 router.get('/delete/:id', (req, res) => {
-  User.findByIdAndRemove(req.params.id, (err, doc) => { // Corrected parameter name
+  User.findByIdAndRemove(req.params.id, (err, users) => {
     if (!err) {
       res.redirect('/adminpage');
     } else {
-      console.log(err);
+        console.error(err);
+        res.status(500).send("Server Error");
     }
   });
 });

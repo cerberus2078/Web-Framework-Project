@@ -35,7 +35,10 @@ app.get("/", (req, res) => {
 
 app.get("/adminpage", async (req, res) => {
   try {
-    const users = await User.find();
+    // added .lean() after User.find, and {} inside the User.find()
+    // .lean() returns the JavaScript object instead of Mongoose document
+    // https://stackoverflow.com/questions/59690923/handlebars-access-has-been-denied-to-resolve-the-property-from-because-it-is
+    const users = await User.find({}).lean();
     console.log("Fetched users:", users); // check if it reads the user data
     res.render("admin", {
       users: users,
@@ -56,21 +59,67 @@ app.get("/admin-crud-update", (req, res) => {
   });
 });
 
-// Other routes...
+// app.get("/admin-crud-update/:id", async (req, res) => {
+//   try {
+//     const id = req.params.userID;
+//     const user = await User.findById(id).lean();
+//     res.render("admin-crud-update", {
+//       user: user,
+//     });
+//     console.log(user); // DEBUGING
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 
-app.post("/users", async (req, res) => {
+app.get("/admin-crud-update/:id", async (req, res) => {
   try {
-    const { userID, firstName, lastName, email, phoneNumber } = req.body;
-    await User.createNewUser(userID, firstName, lastName, email, phoneNumber);
-    res.redirect("/thank-you");
+    const id = req.params.id; // it has to be req.params.user.ID, not req.params.id, because it will check the id from mongoose
+    const user = await User.findOne({userID : id}).lean();
+    if (!user) {
+      console.log("User not found");
+      res.status(404).send("User not found");
+      return;
+    }
+    res.render("admin-crud-update", {
+      user: user,
+    });
+    console.log(user); // DEBUGGING
   } catch (error) {
-    console.error(error);
-    res.status(500).send("Error creating user");
+    console.log(error);
+    res.status(500).send("Server Error");
   }
 });
 
-// Other routes...
+// find user by ID and render the handlebars template
+// app.get('adminpage/:id', async (req, res) => {
+//   try {
+//       const userId = req.params.userID;
+//       const user = await User.findById(userId).lean(); // Using .lean() to get plain JavaScript object
+//       if (!user) {
+//           res.status(404).send('User not found');
+//           return;
+//       }
+//       res.render('admin-crud-update', { user });
+//   } catch (err) {
+//       console.error('Error finding user by ID:', err);
+//       res.status(500).send('Internal Server Error');
+//   }
+// });
 
+
+// app.post("/users", async (req, res) => {
+//   try {
+//     const { userID, firstName, lastName, email, phoneNumber } = req.body;
+//     await User.createNewUser(userID, firstName, lastName, email, phoneNumber);
+//     res.redirect("/thank-you");
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Error creating user");
+//   }
+// });
+
+// for images and css
 app.use(express.static("public"));
 
 module.exports = app;

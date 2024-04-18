@@ -26,7 +26,16 @@
         <div><h2>User information:</h2></div>
         <ol>
             {{#each users}}
-                <li>User ID: {{userID}}, Name: {{#if firstName}}{{firstName}}{{else}}N/A{{/if}} {{lastName}}, Email: {{email}}, Phone: {{phoneNumber}}</li>
+                <li>
+                    User ID: {{this.userID}}, 
+                    Name: {{#if firstName}}{{this.firstName}}{{else}}N/A{{/if}} {{this.lastName}}, 
+                    Email: {{this.email}}, 
+                    Phone: {{this.phoneNumber}}
+                    {{!-- code bellow to go to the page of the specific id, but it cannot find the page, but it finds the id
+                    and it finds the id that we have managed to use, not the id from MongoDB --}}
+                    <a href="/admin-crud-update/{{this.userID}}">Update</a>
+                    <a href="/delete/{{this.userID}}">Delete</a>
+                    </li>
             {{/each}}
         </ol>
 

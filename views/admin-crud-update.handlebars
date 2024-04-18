@@ -13,10 +13,15 @@
         <h1>ADMIN PAGE for {{companyName}} (views/admin-crud-update.handlebars) testing update + delete button with alert window</h1>
         <h2>You can change the data of the user (id) here:</h2>
         <div class="admin-edit-container">
-            {{!-- read user data --}}
-                <p>Jane Doe email@mail.com +132</p>
-                <p>Check-In Date: 15.03.2024 </p>
-                <p>Check-Out Date: 19.03.2024</p>
+
+                {{!-- getting one user from mongodb --}}
+                <div>
+                    <p><strong>User ID:</strong> {{user.userID}}</p>
+                    <p><strong>Name:</strong> {{user.firstName}} {{user.lastName}}</p>
+                    <p><strong>Email:</strong> {{user.email}}</p>
+                    <p><strong>Phone:</strong> {{user.phoneNumber}}</p>
+                </div>
+
                 {{!-- update user data --}}
                 <div class="new-date">
                     <p>New Check-In Date:</p>
@@ -25,6 +30,7 @@
                 <div class="new-date">
                     <p>New Check-Out Date:</p>
                     <input class="check-out field" id="new-check-out-date" placeholder="New Check-Out Date" type="new-check-out-date" value="" title="">
+                    {{!-- <input type="text" id="new-Check-in-date" class="form-control" value="{{user.firstName}}" name="new-Check-in-date" > this will be usefull for update --}}
                 </div>
                 <button onclick="confirmDelete()" id="delete-reservation" class="delete-button" type="submit">Delete Reservation</button>
 
