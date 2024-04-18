@@ -54,19 +54,16 @@ app.get("/", (req, res) => {
   });
 });
 
-
 // I tried to fix the images but it didn't work
 // app.get("/", (req, res) => {
-//   imageList = []; 
-//   imageList.push({ src: "logo2.png", name: "logo2" }); 
+//   imageList = [];
+//   imageList.push({ src: "logo2.png", name: "logo2" });
 //   res.render("index", {
 //     imageList: imageList,
 //     title: "Home",
 //     companyName: "Sunny Side Sandcastle",
 //   });
 // });
-
-
 
 // Rendering the admin.handlebars file (Serve as a template for other pages)
 app.get("/adminpage", (req, res) => {
@@ -96,7 +93,6 @@ app.get("/users", async (req, res) => {
   }
 });
 
-
 // Get booking page information where the user puts their own information (CRUD -> CREATE)
 app.get("/booking", (req, res) => {
   res.render("booking", {
@@ -116,9 +112,9 @@ app.get("/thank-you", (req, res) => {
 // Route for creating the user and sending them to a thank you page where they can still edit/delete their information (if we have time to implement it)
 app.post("/users", async (req, res) => {
   try {
-    const {userID, firstName, lastName, email, phoneNumber} = req.body;
+    const { userID, firstName, lastName, email, phoneNumber } = req.body;
     await User.createNewUser(userID, firstName, lastName, email, phoneNumber);
-  res.redirect("/thank-you");
+    res.redirect("/thank-you");
   } catch (error) {
     console.error(error);
     res.status(500).send("Error creating user");
