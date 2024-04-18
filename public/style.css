@@ -118,6 +118,21 @@ h2{
     object-fit: cover;
 }
 
+.popular{
+    font-weight: bold;
+}
+
+.rooms-container{
+    display: flex;
+}
+
+.room-picture{
+    height: 28vh;
+    width: 90%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
 .white-overlay{
     background-color: #fff;
     display: flex;
@@ -156,9 +171,15 @@ h2{
     margin-top:60px;
 }
 
-.rooms-container{
-    display: flex;
-    justify-content: space-evenly;
+
+.box{
+    flex: 1;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.room:hover{
+    background-color: #a1e7f5;
 }
 
 .room{
@@ -167,6 +188,13 @@ h2{
     width: 300px;
     height: 300px;
     border-radius: 10px;
+    text-align: center;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .fill-up-booking-form-button:hover{

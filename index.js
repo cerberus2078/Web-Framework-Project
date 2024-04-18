@@ -24,6 +24,7 @@ mongoose
 // Import the User schema
 const User = require("./models/User");
 
+
 // USER CRUD FUNCTIONS
 // User.createNewUser(
 //   10,
