@@ -118,6 +118,14 @@ h2{
     object-fit: cover;
 }
 
+.popular{
+    font-weight: bold;
+}
+
+.rooms-container{
+    display: flex;
+}
+
 .room-picture{
     height: 28vh;
     width: 90%;
@@ -165,8 +173,8 @@ h2{
 
 
 .box{
-    display: flex;
-    justify-content: space-evenly;
+    flex: 1;
+    margin: 0 10px;
     cursor: pointer;
 }
 
