@@ -125,10 +125,10 @@ function sayHello() {
 app.get("/api/users", async (req, res) => {
   const id = req.params.id;
   const users = await User.getAll();
-  const usersString = users.toString();
-  console.log(usersString);
+  // const usersString = users.toString();
+  // console.log(usersString);
   res.render("edemusers", {
-    products: usersString.toJSON(),
+    products: users,
   });
 
   // res.json(users);

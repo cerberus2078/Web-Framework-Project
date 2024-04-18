@@ -41,7 +41,7 @@ const User = mongoose.model("User", userSchema);
 // GET ALL ITEMS IN THE DATABASE
 const getAll = async () => {
   try {
-    const result = await User.find();
+    const result = await User.find({}).lean();
     // console.log(result);
     return result;
   } catch (error) {
