@@ -1,5 +1,6 @@
+const express = require('express');
 const mongoose = require("mongoose");
-const router = require("../doing everything from scratch because I got lost");
+const router = express.Router();
 
 const userSchema = new mongoose.Schema({
   userID: {
@@ -21,194 +22,102 @@ const userSchema = new mongoose.Schema({
   phoneNumber: {
     type: String,
     required: true,
-  },
-  // roomNumber: {
-  //   type: String,
-  //   required: false,
-  // },
-  // roomNumber: {
-  //   type: String,
-  //   required: false,
-  // },
-  // bookingDate: {
-  //   type: String,
-  //   required: false,
-  // },
+  }
 });
 
+// To use the schema, use 'User' with the uppercase
 const User = mongoose.model("User", userSchema);
 
-
-// Database Functions Here (CRUD)
-// GET ALL ITEMS IN THE DATABASE
-const getAll = async () => {
-  try {
-    const result = await User.find();
-    console.log(result);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-// CREATE ONE BY USER_ID FUNCTION
-
-const createNewUser = async (
-  userID,
-  firstName,
-  lastName,
-  email,
-  phoneNumber
-) => {
-  const newUser = new User({
-    userID: userID,
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-    phoneNumber: phoneNumber,
+router.get('/adminpage', (req, res) => {
+  res.render('admin-crud-update', {
+    title: "Admin Edit Page"
   });
-  newUser.save().then((result) => {
-    console.log(result);
-  });
-};
+});
 
-// READ ONE BY userID FUNCTION
-const getOneUser = async (id) => {
-  try {
-    const user = await User.findOne({ userID: id });
-    // res.json(user);
-    console.log(user); // Change to send the data to the page
-  } catch (error) {
-    console.log(error);
+router.post('/adminpage', (req, res) => {
+  if (req.body._id == "") {
+    createUser(req, res);
+  } else {
+    updateUser(req, res);
   }
-};
+});
 
-// UPDATE ONE BY USER_ID function
-const updateUser = async (id, updateData) => {
-  try {
-    // Check if we have a product with the id
-    const user = await User.findOne({ userID: id });
-    if (user) {
-      // Construct an object with only fields that require an update
-      const dataToUpdate = {};
-      if (updateData.firstName) dataToUpdate.firstName = updateData.firstName;
-      if (updateData.lastName) dataToUpdate.lastName = updateData.lastName;
-      if (updateData.email) dataToUpdate.email = updateData.email;
-      if (updateData.phoneNumber)
-        dataToUpdate.phoneNumber = updateData.phoneNumber;
+// Create function
+function createUser(req, res) {
+  var user = new User();
+  user.userID = req.body.userID;
+  user.firstName = req.body.firstName;
+  user.lastName = req.body.lastName;
+  user.email = req.body.email;
+  user.phoneNumber = req.body.phoneNumber;
 
-      // Update user information where necessary
-      await User.updateOne({ userID: id }, dataToUpdate);
-      console.log("User Updated", dataToUpdate);
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-
-// UPDATE ONE BY userID function - created by Marika idk if it's going to work properly, Edem's code looks better
-// const updateOneUser = async (
-//   userID,
-//   firstName,
-//   lastName,
-//   email,
-//   phoneNumber
-// ) => {
-//   try {
-//   const updatedUser = await User.findOneAndUpdate(
-//     { userID: userID}, 
-//     {
-//     firstName: firstName,
-//     lastName: lastName,
-//     email: email,
-//     phoneNumber: phoneNumber
-    
-//   }, 
-//   {new: true});
-//   console.log(updatedUser);
-// } catch (error){
-//   console.error(error);
-// }
-// };
-
-
-// DELETE ONE BY USER_ID FUNCTION
-const deleteOneUser = async (id) => {
-  try {
-    // Check if we have a product with the id
-    const user = await User.findOne({ userID: id });
-    if (user) {
-      await User.deleteOne({ userID: id });
-      console.log("User deleted", user); // DELETE THIS LATER replace with a res.render
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-//stopped here
-// update function
-function updateUser(req,res){
-  User.findOneAndUpdate({_id:req.body._id,},req.body,{new:true},(err,doc) => {
-    if(!err){
-      res.redirect('admin')
-    }else{
-      if(err.name == "ValidationError"){
-        handleValidatoinError(err,req.body);
-        res.render("adminedit",{
-          user:req.body
+  user.save((err, doc) => {
+    if (!err) {
+      res.redirect('/adminpage');
+    } else {
+      if (err.name == "ValidationError") {
+        handleValidationError(err, req.body);
+        res.render('admin-crud-update', {
+          title: "Admin Edit Page",
+          user: req.body
         });
-      }else{
+      }
+      console.log(err);
+    }
+  });
+}
+
+// Update function
+function updateUser(req, res) {
+  User.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+    if (!err) {
+      res.redirect('/adminpage');
+    } else {
+      if (err.name == "ValidationError") {
+        handleValidationError(err, req.body);
+        res.render("admin-crud-update", {
+          user: req.body
+        });
+      } else {
         console.log(err);
       }
     }
-  })
+  });
 }
 
-// read
-router.get('/adminpage',(req,res) => {
-  User.find((err,docs) => {
-    if(!err) {
-      res.render("admin",{
-        user:user
-      }
-      )
+// Read
+router.get('/adminpage', (req, res) => {
+  User.find((err, docs) => {
+    if (!err) {
+      res.render("admin", {
+        users: docs // Corrected variable name
+      });
     }
-  })
-})
+  });
+});
 
-// update
-router.get('/:id', (req,res) => {
-  User.findById(req.params.id,(err,doc)=>{
-    if(!err){
-      res.render("adminedit",{
+// Update
+router.get('/:id', (req, res) => {
+  User.findById(req.params.id, (err, doc) => {
+    if (!err) {
+      res.render("admin-crud-update", {
         title: "update",
-        task: doc
-      })
+        user: doc // Corrected variable name
+      });
     }
-  })
-})
+  });
+});
 
-// delete
-router.get('/delete/:id', (req,res) => {
-  User.findByIdAndRemove(req.params,id,(err,doc) => {
-    if(!err){
-      res.redirect('/admin');
-    }
-    else{
+// Delete
+router.get('/delete/:id', (req, res) => {
+  User.findByIdAndRemove(req.params.id, (err, doc) => { // Corrected parameter name
+    if (!err) {
+      res.redirect('/adminpage');
+    } else {
       console.log(err);
     }
-  })
-})
+  });
+});
 
-
-module.exports = {
-  router,
-  User,
-  // createNewUser,
-  // getAll,
-  // getOneUser,
-  // updateUser,
-  // deleteOneUser,
-};
-
+module.exports = router;
+module.exports = User;

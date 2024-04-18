@@ -24,29 +24,18 @@
         <br>
         <br>
         <div><h2>User information:</h2></div>
-        <ul>
+        <ol>
             {{#each users}}
-            <li>{{firstName}}, {{lastName}}</li>
+                <li>User ID: {{userID}}, Name: {{#if firstName}}{{firstName}}{{else}}N/A{{/if}} {{lastName}}, Email: {{email}}, Phone: {{phoneNumber}}</li>
             {{/each}}
-        </ul>
+        </ol>
+
         <div class="text">Please enter the id of the user to change their information:</div>
         <br>
         <form class="admin-id-search-form">
         <input>
         </form>
-        <script>
-            fetch('/users')
-            .then(response => response.json())
-            .then(users => {
-                const userList = document.getElementById('users');
-                users.forEach(user => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${user.firstName}  ${user.lastName} / ${user.email} / ${user.phoneNumber}`;
-                userList.appendChild(listItem);
-                });
-            })
-            .catch(error => console.error('Error fetching users', error));
-        </script>
+        {{!-- removed the script code here, I couldn't cover it with comment --}}
         <button class="continue-button" type="submit">Send</button>
     </div>
 {{>footer}}
