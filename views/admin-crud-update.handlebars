@@ -1,3 +1,4 @@
+{{!-- this page doesnt have the css because of the url I guess (Marika) --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,16 +11,18 @@
     
 {{>header}}
 <div class="admin-page-container">
-        <h1>ADMIN PAGE for {{companyName}} (views/admin-crud-update.handlebars) testing update + delete button with alert window</h1>
-        <h2>You can change the data of the user (id) here:</h2>
+        <h1>ADMIN PAGE for {{companyName}} (views/admin-crud-update.handlebars) update + delete button with alert window</h1>
+        <h2>You can change the data of the user {{user.userID}} here:</h2>
         <div class="admin-edit-container">
 
                 {{!-- getting one user from mongodb --}}
                 <div>
-                    <p><strong>User ID:</strong> {{user.userID}}</p>
-                    <p><strong>Name:</strong> {{user.firstName}} {{user.lastName}}</p>
-                    <p><strong>Email:</strong> {{user.email}}</p>
-                    <p><strong>Phone:</strong> {{user.phoneNumber}}</p>
+                    <p>User ID: {{user.userID}}</p>
+                    <p>Name: {{user.firstName}} {{user.lastName}}</p>
+                    <p>Email: {{user.email}}</p>
+                    <p>Phone: {{user.phoneNumber}}</p>
+                    <p>Check-In Date: to be added here</p>
+                    <p>Check-Out Date: to be added here</p>
                 </div>
 
                 {{!-- update user data --}}

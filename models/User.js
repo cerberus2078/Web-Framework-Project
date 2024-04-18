@@ -43,25 +43,13 @@ router.get('/adminpage', (req, res) => {
   });
 });
 
-// read one user by id
-// router.get('admin-crud-update/:id', (req,res) => {
-//     User.findById(req.params.userID, (err,users) => {
-//         if(!err){
-//             res.render('admin-crud-update',{
-//                 title: "Update User", // make is to that it shows user id here later
-//                 users: users
-//             })
-//         }
-//     })
-// })
-
-// read one user by id updated
+// read one user by id updated - working
 router.get('/admin-crud-update/:id', (req,res) => {
     User.findById(req.params.userID, (err,user) => {
         if(!err && user){
             res.render('admin-crud-update',{
                 title: "Update User",
-                user: user // Change from 'users' to 'user'
+                user: user
             });
         } else {
             console.error(err);
@@ -101,7 +89,7 @@ function createUser(req, res) {
 
 // update function
 function updateUser(req, res) {
-  User.findOneAndUpdate({ userID: req.body.userID }, req.body, { new: true }, (err, doc) => {
+  User.findOneAndUpdate({ userID: req.body.userID }, req.body, { new: true }, (err, user) => {
     if (!err) {
       res.redirect('/adminpage');
     } else {
@@ -119,15 +107,16 @@ function updateUser(req, res) {
 }
 
 // delete user with the id
-router.get('/delete/:id', (req, res) => {
-  User.findByIdAndRemove(req.params.id, (err, users) => {
-    if (!err) {
-      res.redirect('/adminpage');
-    } else {
-        console.error(err);
-        res.status(500).send("Server Error");
-    }
-  });
+router.get('/admin-crud-update/delete/:id', (req, res) => {
+    const id = req.params.id; // Corrected from req.params.userID to req.params.id
+    User.findOneAndDelete({ userID: id }, (err, user) => {
+        if (!err) {
+            res.redirect('/adminpage');
+        } else {
+            console.error(err);
+            res.status(500).send("Server Error");
+        }
+    });
 });
 
 module.exports = router;

@@ -34,7 +34,10 @@
                     {{!-- code bellow to go to the page of the specific id, but it cannot find the page, but it finds the id
                     and it finds the id that we have managed to use, not the id from MongoDB --}}
                     <a href="/admin-crud-update/{{this.userID}}">Update</a>
-                    <a href="/delete/{{this.userID}}">Delete</a>
+
+                    {{!-- delete with the alert window --}}
+                    {{!-- <a onclick="confirmDelete()" href="/admin-crud-update/delete/{{this.userID}}">Delete</a> --}}
+                    <a href="/admin-crud-update/delete/{{this.userID}}">Delete</a>
                     </li>
             {{/each}}
         </ol>
@@ -44,9 +47,21 @@
         <form class="admin-id-search-form">
         <input>
         </form>
-        {{!-- removed the script code here, I couldn't cover it with comment --}}
+        {{!-- removed the script code here, because I couldn't cover it with comment --}}
         <button class="continue-button" type="submit">Send</button>
+        <script>
+            function confirmDelete() {
+            var x;
+            if (confirm("Are you sure you want to delete this reservation?") == true) {
+                x = "Reservation was deleted";
+            } else {
+                x = "Reservation was not deleted";
+            }
+            return x;
+            }
+        </script>
     </div>
+    
 {{>footer}}
 </body>
 </html>

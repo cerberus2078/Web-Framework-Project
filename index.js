@@ -22,7 +22,6 @@ mongoose
     console.log(err);
   });
 
-
 app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
@@ -33,6 +32,7 @@ app.get("/", (req, res) => {
   });
 });
 
+// render the admin page
 app.get("/adminpage", async (req, res) => {
   try {
     // added .lean() after User.find, and {} inside the User.find()
@@ -51,7 +51,7 @@ app.get("/adminpage", async (req, res) => {
   }
 });
 
-
+// blank page to update the user without the user id
 app.get("/admin-crud-update", (req, res) => {
   res.render("admin-crud-update", {
     title: "Admin Edit User",
@@ -59,19 +59,8 @@ app.get("/admin-crud-update", (req, res) => {
   });
 });
 
-// app.get("/admin-crud-update/:id", async (req, res) => {
-//   try {
-//     const id = req.params.userID;
-//     const user = await User.findById(id).lean();
-//     res.render("admin-crud-update", {
-//       user: user,
-//     });
-//     console.log(user); // DEBUGING
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
 
+// render the page of one user - working
 app.get("/admin-crud-update/:id", async (req, res) => {
   try {
     const id = req.params.id; // it has to be req.params.user.ID, not req.params.id, because it will check the id from mongoose
@@ -82,6 +71,7 @@ app.get("/admin-crud-update/:id", async (req, res) => {
       return;
     }
     res.render("admin-crud-update", {
+      title: "Update Page for User",
       user: user,
     });
     console.log(user); // DEBUGGING
@@ -90,23 +80,6 @@ app.get("/admin-crud-update/:id", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
-
-// find user by ID and render the handlebars template
-// app.get('adminpage/:id', async (req, res) => {
-//   try {
-//       const userId = req.params.userID;
-//       const user = await User.findById(userId).lean(); // Using .lean() to get plain JavaScript object
-//       if (!user) {
-//           res.status(404).send('User not found');
-//           return;
-//       }
-//       res.render('admin-crud-update', { user });
-//   } catch (err) {
-//       console.error('Error finding user by ID:', err);
-//       res.status(500).send('Internal Server Error');
-//   }
-// });
-
 
 // app.post("/users", async (req, res) => {
 //   try {
