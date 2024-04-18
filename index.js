@@ -5,7 +5,6 @@ require("dotenv").config(); // Import the dotenv
 
 const app = express(); // Start the server by Creating the express module
 
-
 app.use(express.urlencoded({ extended: false })); // Get the data of the form to be able to pass and use it
 
 // Connect to the mongodb database
@@ -24,6 +23,7 @@ mongoose
 
 // Import the User schema
 const User = require("./models/User");
+
 
 // USER CRUD FUNCTIONS
 // User.createNewUser(

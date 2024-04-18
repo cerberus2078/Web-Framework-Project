@@ -118,6 +118,13 @@ h2{
     object-fit: cover;
 }
 
+.room-picture{
+    height: 28vh;
+    width: 90%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
 .white-overlay{
     background-color: #fff;
     display: flex;
@@ -164,7 +171,7 @@ h2{
 }
 
 .room:hover{
-    background-color: #F1EAA3;
+    background-color: #a1e7f5;
 }
 
 .room{
@@ -180,9 +187,6 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
-    font-size: larger;
-    color: black;
 }
 
 .fill-up-booking-form-button:hover{
