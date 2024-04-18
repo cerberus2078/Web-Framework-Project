@@ -39,5 +39,19 @@ app.get("/users/:id", async (req, res) => {
   }
 });
 
+app.get("/edem/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const user = await User.findOne({ userID: id });
+    res.render("edem", {
+      users: user.toJSON(),
+    });
+  } catch (err) {
+    res.status(404).json({
+      msg: "Not found",
+    });
+  }
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`App listening to port ${PORT}`));
