@@ -8,6 +8,13 @@ const app = express(); // Start the server by Creating the express module
 // Use the route module
 app.use("", require("./routes/users"));
 
+// app.use(express.urlencoded({ extended: true })); // Get the data of the form to be able to parse and use it
+
+// Parse incoming request bodies in JSON format
+app.use(express.json());
+// Parse incoming request bodies in URL-encoded format
+app.use(express.urlencoded({ extended: true }));
+
 // Specify default layout/ main template ie(main.handlebars)
 app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
 
@@ -36,6 +43,8 @@ app.get("/adminpage", async (req, res) => {
 });
 
 // sumit (POST) the firstName to the database to update, later on needs to be changed to check-in and check-out dates
+const User = require("./models/User");
+
 app.post("/adminpage", async (req, res) => {
   try {
     const { userID, firstName } = req.body;
@@ -60,24 +69,24 @@ app.get("/admin-crud-update", (req, res) => {
 });
 
 // render the page of one user - working
-app.get("/admin-crud-update/:id", async (req, res) => {
-  try {
-    const id = req.params.id;
-    const user = await User.findOne({ userID: id }).lean();
-    if (!user) {
-      console.log("User not found");
-      res.status(404).send("User not found");
-      return;
-    }
-    res.render("admin-crud-update", {
-      title: "Update Page for User",
-      user: user,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("Server Error");
-  }
-});
+// app.get("/admin-crud-update/:id", async (req, res) => {
+//   try {
+//     const id = req.params.id;
+//     const user = await User.findOne({ userID: id }).lean();
+//     if (!user) {
+//       console.log("User not found");
+//       res.status(404).send("User not found");
+//       return;
+//     }
+//     res.render("admin-crud-update", {
+//       title: "Update Page for User",
+//       user: user,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send("Server Error");
+//   }
+// });
 
 ///////////// -- END OF EDEM'S PLAYGROUNG -- ///////////////
 

@@ -39,24 +39,27 @@ const getAdminPage = async (req, res) => {
   }
 };
 
-// // render the admin page
-// router.get("/adminpage", async (req, res) => {
-//   try {
-//     // added .lean() after User.find, and {} inside the User.find()
-//     // .lean() returns the JavaScript object instead of Mongoose document
-//     // https://stackoverflow.com/questions/59690923/handlebars-access-has-been-denied-to-resolve-the-property-from-because-it-is
-//     const users = await User.find({}).lean();
-//     // console.log("Fetched users:", users); // check if it reads the user data, debugging
-//     res.render("admin", {
-//       users: users,
-//       title: "Admin",
-//       companyName: "Sunny Side Sandcastle",
-//     });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send("Server Error");
-//   }
-// });
+// Admin Update Page
+const getUpdatePage = async (req, res) => {
+  try {
+    const id = Number(req.params.id); // Parse string to integer
+    // Validate the userID
+    if (isNaN(id)) {
+      throw new Error("Invalid user ID");
+    }
+    const user = await User.getOneUser(id);
+    console.log(user);
+    res.render("admin-crud-update", {
+      title: "UpdatePage",
+      user: user.toJSON(),
+      //   users: user,
+    });
+  } catch (err) {
+    res.status(404).json({
+      msg: err.message || "Not found",
+    });
+  }
+};
 
 // GET ALL USERS
 const getAll = async (req, res) => {
@@ -91,5 +94,30 @@ const getUserDetails = async (req, res) => {
   }
 };
 
+// Update User
+
+// sumit (POST) the firstName to the database to update, later on needs to be changed to check-in and check-out dates
+const updateUser = async (req, res) => {
+  try {
+    const { userID, firstName } = req.body;
+    if (!userID) {
+      return res.status(400).send("User ID (userID) is required");
+    }
+    // Update only the firstName field for the user with the given userID
+    await User.updateUser({ userID }, { firstName });
+    res.redirect("/adminpage");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
+};
+
 // EXPORT MODULES
-module.exports = { getHome, getAll, getUserDetails, getAdminPage };
+module.exports = {
+  getHome,
+  getAll,
+  getUserDetails,
+  getAdminPage,
+  getUpdatePage,
+  updateUser,
+};
