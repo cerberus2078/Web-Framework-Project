@@ -24,7 +24,7 @@ router.get("/adminpage", userController.getAdminPage);
 router.get("/admin-crud-update/:id", userController.getUpdatePage);
 
 // Route for the POST to Update User
-// router.post("/adminpage-updated/:id", userController.updateUsers);
+router.post("/adminpage", userController.updateUser);
 // router.post("/adminpage-updated/:id", userController.updateUsers);
 
 // // sumit (POST) the firstName to the database to update, later on needs to be changed to check-in and check-out dates

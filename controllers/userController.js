@@ -104,7 +104,7 @@ const updateUser = async (req, res) => {
       return res.status(400).send("User ID (userID) is required");
     }
     // Update only the firstName field for the user with the given userID
-    await User.updateUser({ userID }, { firstName });
+    await User.updateOneUser({ userID }, { firstName });
     res.redirect("/adminpage");
   } catch (error) {
     console.error(error);

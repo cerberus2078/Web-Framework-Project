@@ -5,15 +5,15 @@ require("dotenv").config(); // Import the dotenv
 
 const app = express(); // Start the server by Creating the express module
 
-// Use the route module
-app.use("", require("./routes/users"));
-
 // app.use(express.urlencoded({ extended: true })); // Get the data of the form to be able to parse and use it
 
 // Parse incoming request bodies in JSON format
 app.use(express.json());
 // Parse incoming request bodies in URL-encoded format
 app.use(express.urlencoded({ extended: true }));
+
+// Use the route module
+app.use("", require("./routes/users"));
 
 // Specify default layout/ main template ie(main.handlebars)
 app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
@@ -42,17 +42,62 @@ app.get("/adminpage", async (req, res) => {
   }
 });
 
+// Route for creating the user and sending them to a thank you page where they can still edit/delete their information (if we have time to implement it)
+app.post("/users", async (req, res) => {
+  try {
+    const {
+      userID,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      checkIn,
+      checkOut,
+    } = req.body;
+    await User.createNewUser(
+      userID,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      checkIn,
+      checkOut
+    );
+    res.redirect("/thank-you");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error creating user");
+  }
+});
+
 // sumit (POST) the firstName to the database to update, later on needs to be changed to check-in and check-out dates
 const User = require("./models/User");
+
+// app.post("/adminpage", async (req, res) => {
+//   try {
+//     const { userID, firstName } = req.body;
+//     if (!userID) {
+//       return res.status(400).send("User ID (userID) is required");
+//     }
+//     // Update only the firstName field for the user with the given userID
+//     await User.findOneAndUpdate({ userID }, { firstName });
+//     res.redirect("/adminpage");
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Server Error");
+//   }
+// });
+// User.updateUser(12, { firstName: "SECONDUPDATEDHEHEHE" });
 
 app.post("/adminpage", async (req, res) => {
   try {
     const { userID, firstName } = req.body;
+    const id = req.body.userID;
     if (!userID) {
       return res.status(400).send("User ID (userID) is required");
     }
     // Update only the firstName field for the user with the given userID
-    await User.findOneAndUpdate({ userID }, { firstName });
+    await User.updateOneUser(userID, firstName);
     res.redirect("/adminpage");
   } catch (error) {
     console.error(error);

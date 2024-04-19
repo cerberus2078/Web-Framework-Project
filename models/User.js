@@ -112,31 +112,63 @@ const updateUserOld = async (id, updateData) => {
 };
 
 // NEW UPDATE FUNCTION WITH findOneAndUpdate
-const updateUser = async (id, updateData) => {
+// const updateUser = async (id, updateData) => {
+//   try {
+//     const id = req.params.id;
+//     const updateData = req.body;
+
+//     const updatedUser = await User.findOneAndUpdate(
+//       { userID: id },
+//       updateData,
+//       { new: true }
+//     );
+
+//     // Check if the user was found and updated
+//     if (!updatedUser) {
+//       return res.status(404).json({ error: "User not found" });
+//     }
+
+//     // Return the updated user as a JSON response
+//     res.json(updatedUser);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// };
+
+// const updateUser = async (id, updateData) => {
+//   try {
+//     const updatedUser = await User.findOneAndUpdate(
+//       { userID: id },
+//       updateData,
+//       {
+//         new: true,
+//       }
+//     );
+//     // Check if the user was found and updated
+//     //     if (!updatedUser) {
+//     //       return res.status(404).json({ error: "User not found" });
+//     //     }
+
+//     //     // Return the updated user as a JSON response
+//     //     res.json(updatedUser);
+//   } catch (error) {
+//     console.error(error);
+//     //   res.status(500).json({ error: "Internal server error" });
+//   }
+// };
+
+const updateOneUser = async (id, updateData) => {
   try {
-    const id = req.params.id;
-    const updateData = req.body;
-
-    const updatedUser = await User.findOneAndUpdate(
-      { userID: id },
-      updateData,
-      { new: true }
-    );
-
-    // Check if the user was found and updated
-    if (!updatedUser) {
-      return res.status(404).json({ error: "User not found" });
-    }
-
-    // Return the updated user as a JSON response
-    res.json(updatedUser);
+    const updatedUser = await User.findOneAndUpdate(id, updateData, {
+      new: true,
+    });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Internal server error" });
   }
 };
 
 // Export
 // module.exports = mongoose.model("User", userSchema);
 // module.exports = { User, getOneUser };
-module.exports = { createNewUser, getAllUsers, getOneUser, updateUser };
+module.exports = { createNewUser, getAllUsers, getOneUser, updateOneUser };
