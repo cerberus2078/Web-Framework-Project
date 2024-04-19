@@ -48,7 +48,7 @@ const getUpdatePage = async (req, res) => {
       throw new Error("Invalid user ID");
     }
     const user = await User.getOneUser(id);
-    console.log(user);
+    // console.log(user);
     res.render("admin-crud-update", {
       title: "UpdatePage",
       user: user.toJSON(),
@@ -99,12 +99,16 @@ const getUserDetails = async (req, res) => {
 // sumit (POST) the firstName to the database to update, later on needs to be changed to check-in and check-out dates
 const updateUser = async (req, res) => {
   try {
-    const { userID, firstName } = req.body;
+    const { userID, firstName, lastName, email, checkInDate, checkOutDate } =
+      req.body;
     if (!userID) {
       return res.status(400).send("User ID (userID) is required");
     }
     // Update only the firstName field for the user with the given userID
-    await User.updateOneUser({ userID }, { firstName });
+    await User.updateOneUser(
+      { userID },
+      { firstName, lastName, email, checkInDate, checkOutDate }
+    );
     res.redirect("/adminpage");
   } catch (error) {
     console.error(error);

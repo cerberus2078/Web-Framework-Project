@@ -88,81 +88,12 @@ const getOneUser = async (id) => {
   }
 };
 
-// UPDATE ONE BY USER_ID function
-const updateUserOld = async (id, updateData) => {
-  try {
-    // Check if we have a product with the id
-    const user = await User.findOne({ userID: id });
-    if (user) {
-      // Construct an object with only fields that require an update
-      const dataToUpdate = {};
-      if (updateData.firstName) dataToUpdate.firstName = updateData.firstName;
-      if (updateData.lastName) dataToUpdate.lastName = updateData.lastName;
-      if (updateData.email) dataToUpdate.email = updateData.email;
-      if (updateData.phoneNumber)
-        dataToUpdate.phoneNumber = updateData.phoneNumber;
-
-      // Update user information where necessary
-      await User.updateOne({ userID: id }, dataToUpdate);
-      console.log("User Updated", dataToUpdate);
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-// NEW UPDATE FUNCTION WITH findOneAndUpdate
-// const updateUser = async (id, updateData) => {
-//   try {
-//     const id = req.params.id;
-//     const updateData = req.body;
-
-//     const updatedUser = await User.findOneAndUpdate(
-//       { userID: id },
-//       updateData,
-//       { new: true }
-//     );
-
-//     // Check if the user was found and updated
-//     if (!updatedUser) {
-//       return res.status(404).json({ error: "User not found" });
-//     }
-
-//     // Return the updated user as a JSON response
-//     res.json(updatedUser);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// };
-
-// const updateUser = async (id, updateData) => {
-//   try {
-//     const updatedUser = await User.findOneAndUpdate(
-//       { userID: id },
-//       updateData,
-//       {
-//         new: true,
-//       }
-//     );
-//     // Check if the user was found and updated
-//     //     if (!updatedUser) {
-//     //       return res.status(404).json({ error: "User not found" });
-//     //     }
-
-//     //     // Return the updated user as a JSON response
-//     //     res.json(updatedUser);
-//   } catch (error) {
-//     console.error(error);
-//     //   res.status(500).json({ error: "Internal server error" });
-//   }
-// };
-
 const updateOneUser = async (id, updateData) => {
   try {
     const updatedUser = await User.findOneAndUpdate(id, updateData, {
       new: true,
     });
+    // console.log(updatedUser);
   } catch (error) {
     console.error(error);
   }

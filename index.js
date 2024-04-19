@@ -71,7 +71,7 @@ app.post("/users", async (req, res) => {
 });
 
 // sumit (POST) the firstName to the database to update, later on needs to be changed to check-in and check-out dates
-const User = require("./models/User");
+// const User = require("./models/User");
 
 // app.post("/adminpage", async (req, res) => {
 //   try {
@@ -89,21 +89,21 @@ const User = require("./models/User");
 // });
 // User.updateUser(12, { firstName: "SECONDUPDATEDHEHEHE" });
 
-app.post("/adminpage", async (req, res) => {
-  try {
-    const { userID, firstName } = req.body;
-    const id = req.body.userID;
-    if (!userID) {
-      return res.status(400).send("User ID (userID) is required");
-    }
-    // Update only the firstName field for the user with the given userID
-    await User.updateOneUser(userID, firstName);
-    res.redirect("/adminpage");
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Server Error");
-  }
-});
+// app.post("/adminpage", async (req, res) => {
+//   try {
+//     const { userID, firstName } = req.body;
+//     const id = req.body.userID;
+//     if (!userID) {
+//       return res.status(400).send("User ID (userID) is required");
+//     }
+//     // Update only the firstName field for the user with the given userID
+//     await User.updateOneUser(userID, firstName);
+//     res.redirect("/adminpage");
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Server Error");
+//   }
+// });
 
 // blank page to update the user without the user id
 app.get("/admin-crud-update", (req, res) => {
