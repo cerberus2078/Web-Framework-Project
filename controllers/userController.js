@@ -24,6 +24,23 @@ const getHome = (req, res) => {
   });
 };
 
+// GET BOOKING PAGE
+const getBookingPage = (req, res) => {
+  //   res.send("INDEX PAGE SHOWING HERE WITH MVC");
+  res.render("booking", {
+    title: "Booking",
+    companyName: "Sunny Side Sandcastle",
+  });
+};
+
+// GET THANK YOU PAGE
+const getThankYouPage = (req, res) => {
+  res.render("thank-you", {
+    title: "Thank You",
+    companyName: "Sunny Side Sandcastle",
+  });
+};
+
 // GET ADMIN
 const getAdminPage = async (req, res) => {
   try {
@@ -58,6 +75,34 @@ const getUpdatePage = async (req, res) => {
     res.status(404).json({
       msg: err.message || "Not found",
     });
+  }
+};
+
+// CREATE USER
+const createUser = async (req, res) => {
+  try {
+    const {
+      userID,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      checkIn,
+      checkOut,
+    } = req.body;
+    await User.createNewUser({
+      userID,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      checkIn,
+      checkOut,
+    });
+    res.redirect("/thank-you");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error creating user");
   }
 };
 
@@ -96,7 +141,7 @@ const getUserDetails = async (req, res) => {
 
 // Update User
 
-// sumit (POST) the firstName to the database to update, later on needs to be changed to check-in and check-out dates
+// submit (POST) the firstName to the database to update, later on needs to be changed to check-in and check-out dates
 const updateUser = async (req, res) => {
   try {
     const { userID, firstName, lastName, email, checkInDate, checkOutDate } =
@@ -116,12 +161,27 @@ const updateUser = async (req, res) => {
   }
 };
 
+// Delete user
+const deleteUser = async (req, res) => {
+  const id = req.params.id;
+  const deletedUser = await User.deleteOneUser(id);
+  try {
+    res.redirect("/adminpage");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // EXPORT MODULES
 module.exports = {
   getHome,
+  getBookingPage,
+  getThankYouPage,
   getAll,
   getUserDetails,
   getAdminPage,
   getUpdatePage,
   updateUser,
+  deleteUser,
+  createUser,
 };

@@ -41,24 +41,10 @@ const User = mongoose.model("User", userSchema);
 
 // CREATE ONE BY USER_ID FUNCTION
 
-const createNewUser = async (
-  userID,
-  firstName,
-  lastName,
-  email,
-  phoneNumber
-) => {
+const createNewUser = (userData) => {
   try {
-    const newUser = new User({
-      userID: userID,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      phoneNumber: phoneNumber,
-    });
-    newUser.save().then((result) => {
-      console.log(result);
-    });
+    const newUser = new User(userData);
+    newUser.save();
   } catch (error) {
     console.log(error);
   }
@@ -68,7 +54,6 @@ const createNewUser = async (
 const getAllUsers = async () => {
   try {
     const users = await User.find().lean();
-    // console.log(users);
     return users;
   } catch (error) {
     console.log(error);
@@ -79,27 +64,37 @@ const getAllUsers = async () => {
 const getOneUser = async (id) => {
   try {
     const user = await User.findOne({ userID: id });
-    // res.json(user);
-    // console.log(user); // Change to send the data to the page
     return user;
-    // return user.toJSON();
   } catch (error) {
     console.log(error);
   }
 };
 
+// UPDATE ONE BY USER_ID function
 const updateOneUser = async (id, updateData) => {
   try {
     const updatedUser = await User.findOneAndUpdate(id, updateData, {
       new: true,
     });
-    // console.log(updatedUser);
   } catch (error) {
     console.error(error);
   }
 };
 
+// DELETE ONE BY USER_ID FUNCTION
+const deleteOneUser = async (id) => {
+  try {
+    const deletedUser = await User.findOneAndDelete({ userID: id });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 // Export
-// module.exports = mongoose.model("User", userSchema);
-// module.exports = { User, getOneUser };
-module.exports = { createNewUser, getAllUsers, getOneUser, updateOneUser };
+module.exports = {
+  createNewUser,
+  getAllUsers,
+  getOneUser,
+  updateOneUser,
+  deleteOneUser,
+};

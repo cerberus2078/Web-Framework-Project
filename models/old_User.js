@@ -37,7 +37,6 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
-
 // Database Functions Here (CRUD)
 // GET ALL ITEMS IN THE DATABASE
 const getAll = async () => {
@@ -104,7 +103,6 @@ const updateUser = async (id, updateData) => {
   }
 };
 
-
 // UPDATE ONE BY userID function - created by Marika idk if it's going to work properly, Edem's code looks better
 // const updateOneUser = async (
 //   userID,
@@ -115,21 +113,20 @@ const updateUser = async (id, updateData) => {
 // ) => {
 //   try {
 //   const updatedUser = await User.findOneAndUpdate(
-//     { userID: userID}, 
+//     { userID: userID},
 //     {
 //     firstName: firstName,
 //     lastName: lastName,
 //     email: email,
 //     phoneNumber: phoneNumber
-    
-//   }, 
+
+//   },
 //   {new: true});
 //   console.log(updatedUser);
 // } catch (error){
 //   console.error(error);
 // }
 // };
-
 
 // DELETE ONE BY USER_ID FUNCTION
 const deleteOneUser = async (id) => {
@@ -145,6 +142,25 @@ const deleteOneUser = async (id) => {
   }
 };
 
+// delete user with the id
+router.get("/admin-crud-update/delete/:id", async (req, res) => {
+  try {
+    const deletedUser = await User.findOneAndDelete({
+      userID: req.body.userID,
+    });
+    if (deletedUser) {
+      res.redirect("/adminpage");
+      console.log("User was deleted");
+    } else {
+      console.log("User not found");
+      res.status(404).send("User not found, " + err);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error" + err);
+  }
+});
+
 module.exports = {
   User,
   createNewUser,
@@ -153,4 +169,3 @@ module.exports = {
   updateUser,
   deleteOneUser,
 };
-
