@@ -24,28 +24,44 @@
         <br>
         <br>
         <div><h2>User information:</h2></div>
+        <ol>
+            {{#each users}}
+                <li>
+                    User ID: {{this.userID}}, 
+                    Name: {{#if firstName}}{{this.firstName}}{{else}}N/A{{/if}} {{this.lastName}}, 
+                    Email: {{this.email}}, 
+                    Phone: {{this.phoneNumber}}
+                    {{!-- code bellow to go to the page of the specific id, but it cannot find the page, but it finds the id
+                    and it finds the id that we have managed to use, not the id from MongoDB --}}
+                    <a href="/admin-crud-update/{{this.userID}}">Update</a>
+
+                    {{!-- delete with the alert window --}}
+                    {{!-- <a onclick="confirmDelete()" href="/admin-crud-update/delete/{{this.userID}}">Delete</a> --}}
+                    <a href="/admin-crud-update/delete/{{this.userID}}">Delete</a>
+                    </li>
+            {{/each}}
+        </ol>
+
         <div class="text">Please enter the id of the user to change their information:</div>
         <br>
         <form class="admin-id-search-form">
         <input>
         </form>
-        <!-- CRUD should be here -->
-        {{!-- Read --}}
-        <script>
-            fetch('/users')
-            .then(response => response.json())
-            .then(users => {
-                const userList = document.getElementById('users');
-                users.forEach(user => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${user.firstName}  ${user.lastName} / ${user.email} / ${user.phoneNumber}`;
-                userList.appendChild(listItem);
-                });
-            })
-            .catch(error => console.error('Error fetching users', error));
-        </script>
+        {{!-- removed the script code here, because I couldn't cover it with comment --}}
         <button class="continue-button" type="submit">Send</button>
+        <script>
+            function confirmDelete() {
+            var x;
+            if (confirm("Are you sure you want to delete this reservation?") == true) {
+                x = "Reservation was deleted";
+            } else {
+                x = "Reservation was not deleted";
+            }
+            return x;
+            }
+        </script>
     </div>
+    
 {{>footer}}
 </body>
 </html>
