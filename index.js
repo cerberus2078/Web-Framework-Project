@@ -117,8 +117,8 @@ app.get("/thank-you", (req, res) => {
 // Route for creating the user and sending them to a thank you page where they can still edit/delete their information (if we have time to implement it)
 app.post("/users", async (req, res) => {
   try {
-    const {userID, firstName, lastName, email, phoneNumber} = req.body;
-    await User.createNewUser(userID, firstName, lastName, email, phoneNumber);
+    const {userID, firstName, lastName, email, phoneNumber, checkIn, checkOut} = req.body;
+    await User.createNewUser(userID, firstName, lastName, email, phoneNumber, checkIn, checkOut);
   res.redirect("/thank-you");
   } catch (error) {
     console.error(error);

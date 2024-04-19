@@ -21,6 +21,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  checkIn: {
+    type: String,
+    required: true,
+  },
+  checkOut: {
+    type: String,
+    required: true,
+  },
   // roomNumber: {
   //  type: String,
   //  required: false,
@@ -56,7 +64,9 @@ const createNewUser = async (
   firstName,
   lastName,
   email,
-  phoneNumber
+  phoneNumber,
+  checkIn,
+  checkOut
 ) => {
   const newUser = new User({
     userID: userID,
@@ -64,6 +74,8 @@ const createNewUser = async (
     lastName: lastName,
     email: email,
     phoneNumber: phoneNumber,
+    checkIn: checkIn, 
+    checkOut: checkOut
   });
   newUser.save().then((result) => {
     console.log(result);
@@ -94,6 +106,8 @@ const updateUser = async (id, updateData) => {
       if (updateData.email) dataToUpdate.email = updateData.email;
       if (updateData.phoneNumber)
         dataToUpdate.phoneNumber = updateData.phoneNumber;
+      if (updateData.checkIn) dataToUpdate.checkIn = updateData.checkIn;
+      if (updateData.checkOut) dataToUpdate.checkOut = updateData.checkOut;
 
       // Update user information where necessary
       await User.updateOne({ userID: id }, dataToUpdate);
