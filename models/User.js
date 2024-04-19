@@ -110,7 +110,7 @@ function createUser(req, res) {
 
 // update function
 function updateUser(req, res) {
-  const updateFields = {firstName: req.body.firstName}
+  const updateFields = {firstName: req.body.firstName, checkIn: req.body.checkIn, checkOut: req.body.checkOut}
   User.findOneAndUpdate({ userID: req.body.userID }, updateFields, { new: true }, (err, user) => {
     if (!err) {
       res.redirect('/adminpage');

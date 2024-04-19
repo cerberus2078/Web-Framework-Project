@@ -60,12 +60,12 @@ app.get("/adminpage", async (req, res) => {
 // sumit (POST) the firstName to the database to update, later on needs to be changed to check-in and check-out dates
 app.post("/adminpage", async (req, res) => {
   try {
-    const { userID, firstName } = req.body;
+    const { userID, firstName, checkIn, checkOut } = req.body;
     if (!userID) {
       return res.status(400).send("User ID (userID) is required");
     }
     // Update only the firstName field for the user with the given userID
-    await User.findOneAndUpdate({ userID }, { firstName });
+    await User.findOneAndUpdate({ userID }, { firstName, checkIn, checkOut });
     res.redirect("/adminpage");
   } catch (error) {
     console.error(error);
