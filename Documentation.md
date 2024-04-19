@@ -8,6 +8,9 @@ npm install express-handlebars
 for POST method:
 npm install body-parser
 
+for DELETE method:
+npm install method-override
+
 PACKAGE.JSON/SCRIPTS - "dev": "nodemon index",
 
 MONGODB

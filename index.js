@@ -3,11 +3,13 @@ const exphbs = require("express-handlebars");
 const mongoose = require("mongoose");
 const path = require('path');
 const bodyparser = require('body-parser');
+const methodOverride = require("method-override");
 require("dotenv").config();
 
 const app = express();
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(bodyparser.json()); // convert data into json
+app.use(methodOverride('_method')); // method-override middleware
 
 const User = require("./models/User");
 
@@ -55,29 +57,6 @@ app.get("/adminpage", async (req, res) => {
   }
 });
 
-// Handle form submission for updating or creating a user
-// app.post("/adminpage", async (req, res) => {
-//   try {
-//     const { _id, firstName } = req.body; // Only need userID and firstName for updating
-//     if (!_id) {
-//       // Create a new user if userID is not provided
-//       const { lastName, email, phoneNumber } = req.body; // Destructure other fields
-//       const newUser = new User({ firstName, lastName, email, phoneNumber });
-//       await newUser.save();
-//     } else {
-//       // Update an existing user if userID is provided
-//       await User.findOneAndUpdate(
-//         { userID },
-//         { firstName } // Update only the firstName field
-//       );
-//     }
-//     res.redirect("/adminpage");
-//   } catch (error) {
-//     console.error(error);
-//     // res.status(500).send("Server Error");
-//   }
-// });
-
 // sumit (POST) the firstName to the database to update, later on needs to be changed to check-in and check-out dates
 app.post("/adminpage", async (req, res) => {
   try {
@@ -94,9 +73,6 @@ app.post("/adminpage", async (req, res) => {
   }
 });
 
-
-
-
 // blank page to update the user without the user id
 app.get("/admin-crud-update", (req, res) => {
   res.render("admin-crud-update", {
@@ -104,6 +80,25 @@ app.get("/admin-crud-update", (req, res) => {
     companyName: "Sunny Side Sandcastle",
   });
 });
+
+
+// delete user with the id
+app.delete('/admin-crud-update/delete/:id', async (req, res) => {
+  try {
+      const id = req.params.id;
+      const deletedUser = await User.findOneAndDelete({ userID: id });
+      if (deletedUser) {
+          res.status(200).send("User deleted successfully");
+      } else {
+          console.log("User not found");
+          res.status(404).send("User not found");
+      }
+  } catch (err) {
+      console.error(err);
+      res.status(500).send("Server Error");
+  }
+});
+
 
 
 // render the page of one user - working
@@ -126,6 +121,7 @@ app.get("/admin-crud-update/:id", async (req, res) => {
   }
 });
 
+
 // app.post("/users", async (req, res) => {
 //   try {
 //     const { userID, firstName, lastName, email, phoneNumber } = req.body;
@@ -136,9 +132,6 @@ app.get("/admin-crud-update/:id", async (req, res) => {
 //     res.status(500).send("Error creating user");
 //   }
 // });
-
-// load style for admin-crud-update/:id
-// Serve CSS files specifically for /admin-crud-update route
 
 // for images and css
 app.use(express.static("public"));

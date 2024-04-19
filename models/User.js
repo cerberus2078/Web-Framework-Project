@@ -122,17 +122,23 @@ function updateUser(req, res) {
 }
 
 // delete user with the id
-router.get('/admin-crud-update/delete/:id', (req, res) => {
-    const id = req.params.id; // Corrected from req.params.userID to req.params.id
-    User.findOneAndDelete({ userID: id }, (err, user) => {
-        if (!err) {
-            res.redirect('/adminpage');
-        } else {
-            console.error(err);
-            res.status(500).send("Server Error");
-        }
-    });
+router.get('/admin-crud-update/delete/:id', async (req, res) => {
+  try {
+      const deletedUser = await User.findOneAndDelete({ userID: req.body.userID });
+      if (deletedUser) {
+          res.redirect('/adminpage');
+          console.log("User was deleted");
+      } else {
+          console.log("User not found");
+          res.status(404).send("User not found, " + err);
+      }
+  } catch (err) {
+      console.error(err);
+      res.status(500).send("Server Error" + err);
+  }
 });
+
+
 
 module.exports = router;
 module.exports = User;
