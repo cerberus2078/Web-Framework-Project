@@ -1,4 +1,9 @@
-{{!-- this page doesnt have the css because of the url I guess (Marika) --}}
+{{!-- this page cannot use style.css from public and throws an error --}}
+{{!-- I've hardcoded the style.css, but it still has the error --}}
+{{!-- trying to fix the error rn --}}
+{{!-- To-Do: add the grid for the users to make it look better --}}
+<link rel="stylesheet" href="/style.css"/>
+
 
 {{>header}}
 <div class="admin-page-container">
@@ -19,7 +24,6 @@
 
         {{!-- update user data --}}
         <form action="/adminpage" method="POST" autocomplete="off">
-
         {{!-- fix this later \/ --}}
             {{!-- <div class="new-date">
                 <p>New Check-In Date:</p>
@@ -37,15 +41,13 @@
                 but later on we should change it to check-in and out dates, I just don't want to mess up the database
                 for you guys</p>
 
-            {{!-- <input type="hidden" name="userID" value="{{user.userID}}"> --}}
-            <p type="" name="userID" value="{{user.userID}}">{{user.userID}}</p>
+            <input type="hidden" name="userID" value="{{user.userID}}">
             <div class="new-name">
                 <p>New First Name:</p>
                 <input class="name field" id="new-name-date" placeholder="New First Name" name="firstName"
                     type="new-name" value="{{user.firstName}}" title="">
-                {{!-- <input type="text" id="new-Check-in-date" class="form-control" value="{{user.firstName}}"
-                    name="new-Check-in-date"> this will be usefull for update --}}
             </div>
+            {{!-- delete is not working --}}
             <button onclick="confirmDelete()" id="delete-reservation" class="delete-button" type="submit">Delete
                 Reservation</button>
 

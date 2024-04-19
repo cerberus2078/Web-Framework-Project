@@ -109,7 +109,7 @@ app.get("/admin-crud-update", (req, res) => {
 // render the page of one user - working
 app.get("/admin-crud-update/:id", async (req, res) => {
   try {
-    const id = req.params.id; // it has to be req.params.user.ID, not req.params.id, because it will check the id from mongoose
+    const id = req.params.id;
     const user = await User.findOne({userID : id}).lean();
     if (!user) {
       console.log("User not found");
@@ -136,6 +136,9 @@ app.get("/admin-crud-update/:id", async (req, res) => {
 //     res.status(500).send("Error creating user");
 //   }
 // });
+
+// load style for admin-crud-update/:id
+// Serve CSS files specifically for /admin-crud-update route
 
 // for images and css
 app.use(express.static("public"));
