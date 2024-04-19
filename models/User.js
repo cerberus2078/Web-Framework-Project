@@ -1,3 +1,4 @@
+// this is the file that contains User schema and User controller
 const express = require('express');
 const mongoose = require("mongoose");
 const router = express.Router();
@@ -13,17 +14,20 @@ const userSchema = new mongoose.Schema({
   },
   lastName: {
     type: String,
-    required: true,
+    required: false, // changed to false for update CRUD
   },
   email: {
     type: String,
-    required: true,
+    required: false, // changed to false for update CRUD
   },
   phoneNumber: {
     type: String,
-    required: true,
+    required: false, // changed to false for update CRUD
   }
 });
+
+// To-Do: we could add email validation: if the email has "@" -> email is valid
+// if the email does not have "@" -> email is invalid
 
 // to use the schema, use 'User' with the uppercase
 const User = mongoose.model("User", userSchema);
@@ -59,11 +63,20 @@ router.get('/admin-crud-update/:id', (req,res) => {
 });
 
 // call functions create user and update user
+// To-Do: userID auto increment when creating a user
+
+// maybe this could help:
+
+// const newId = users[users.length -1].userID + 1;
+// const newUser = {userID : newId}
+
 router.post('/adminpage', (req, res) => {
   if (req.body.userID == "") {
     createUser(req, res);
+    console.log(req.body); // debugging
   } else {
     updateUser(req, res);
+    console.log(req.body); // debugging
   }
 });
 
@@ -82,14 +95,15 @@ function createUser(req, res) {
       res.redirect('/adminpage');
     } else {
       console.error(err);
-      res.status(500).send("Server Error");
+      res.status(500).send("Server Error: Failed to create user");
     }
   });
 }
 
 // update function
 function updateUser(req, res) {
-  User.findOneAndUpdate({ userID: req.body.userID }, req.body, { new: true }, (err, user) => {
+  const updateFields = {firstName: req.body.firstName}
+  User.findOneAndUpdate({ userID: req.body.userID }, updateFields, { new: true }, (err, user) => {
     if (!err) {
       res.redirect('/adminpage');
     } else {
@@ -101,6 +115,7 @@ function updateUser(req, res) {
             });
         }else{
             console.error(err);
+            res.status(500).send("Server Error");
         }
     }
   });
