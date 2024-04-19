@@ -12,6 +12,9 @@ router.get("/allusers", userController.getAll);
 // Route for finding one user by userID and rendering edem.handlebars
 router.get("/edem/:id", userController.getUserDetails);
 
+// Route for the admin page
+router.get("/adminpage", userController.getAdminPage);
+
 ///////////-- END OF TESTING -- //////////////
 
 /////////// -- INSERT ROUTES HERE -- ///////////

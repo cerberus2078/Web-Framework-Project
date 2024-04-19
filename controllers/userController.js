@@ -24,6 +24,40 @@ const getHome = (req, res) => {
   });
 };
 
+// GET ADMIN
+const getAdminPage = async (req, res) => {
+  try {
+    const allUsers = await User.getAllUsers();
+    res.render("admin", {
+      title: "Admin",
+      companyName: "Sunny Side Sandcastle",
+      users: allUsers,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+};
+
+// // render the admin page
+// router.get("/adminpage", async (req, res) => {
+//   try {
+//     // added .lean() after User.find, and {} inside the User.find()
+//     // .lean() returns the JavaScript object instead of Mongoose document
+//     // https://stackoverflow.com/questions/59690923/handlebars-access-has-been-denied-to-resolve-the-property-from-because-it-is
+//     const users = await User.find({}).lean();
+//     // console.log("Fetched users:", users); // check if it reads the user data, debugging
+//     res.render("admin", {
+//       users: users,
+//       title: "Admin",
+//       companyName: "Sunny Side Sandcastle",
+//     });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("Server Error");
+//   }
+// });
+
 // GET ALL USERS
 const getAll = async (req, res) => {
   try {
@@ -58,4 +92,4 @@ const getUserDetails = async (req, res) => {
 };
 
 // EXPORT MODULES
-module.exports = { getHome, getAll, getUserDetails };
+module.exports = { getHome, getAll, getUserDetails, getAdminPage };
