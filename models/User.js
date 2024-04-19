@@ -23,7 +23,15 @@ const userSchema = new mongoose.Schema({
   phoneNumber: {
     type: String,
     required: false, // changed to false for update CRUD
-  }
+  },
+  checkIn: {
+    type: String,
+    required: true,
+  },
+  checkOut: {
+    type: String,
+    required: true,
+  },
 });
 
 // To-Do: we could add email validation: if the email has "@" -> email is valid
