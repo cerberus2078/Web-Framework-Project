@@ -20,8 +20,14 @@ router.get("/edem/:id", userController.getUserDetails);
 router.get("/", userController.getHome);
 // Render the booking page
 router.get("/booking", userController.getBookingPage);
+// Route for room 1 page
+router.get("/room1", userController.getRoom1Page);
+// Route for room 2 page
+router.get("/room2", userController.getRoom2Page);
 // Route for Thank you page
 router.get("/thank-you", userController.getThankYouPage);
+// Route for the admin login page
+router.get("/adminLogin", userController.getAdminLoginPage);
 // Route for the admin page
 router.get("/adminpage", userController.getAdminPage);
 

@@ -318,6 +318,25 @@ h2 {
   grid-column-end: 5;
 }
 
+.rooms-mainPicture{
+  height: 55vh;
+  width: 95%;
+  border-radius: 20px;
+  object-fit: cover;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.rooms-picture{
+  height: 28vh;
+  width: 90%;
+  border-radius: 20px;
+  object-fit: cover;
+  margin-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .under-pictures-container {
   width: 70%;
   height: 30%;
@@ -326,6 +345,7 @@ h2 {
   align-items: center;
   margin: 0 auto;
   justify-content: space-around;
+  margin-top: 100px;
 }
 
 .room-description {
@@ -340,6 +360,7 @@ h2 {
 
 .price-reserve-container {
   padding: 10px;
+  margin-top: 50px;
   text-align: center;
   font-size: 20px;
   display: flex;

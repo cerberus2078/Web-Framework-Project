@@ -26,9 +26,24 @@ const getHome = (req, res) => {
 
 // GET BOOKING PAGE
 const getBookingPage = (req, res) => {
-  //   res.send("INDEX PAGE SHOWING HERE WITH MVC");
   res.render("booking", {
     title: "Booking",
+    companyName: "Sunny Side Sandcastle",
+  });
+};
+
+// GET ROOM1 PAGE
+const getRoom1Page = (req, res) => {
+  res.render("room1", {
+    title: "Room 1",
+    companyName: "Sunny Side Sandcastle",
+  });
+};
+
+// GET ROOM2 PAGE
+const getRoom2Page = (req, res) => {
+  res.render("room2", {
+    title: "Room 2",
     companyName: "Sunny Side Sandcastle",
   });
 };
@@ -37,6 +52,14 @@ const getBookingPage = (req, res) => {
 const getThankYouPage = (req, res) => {
   res.render("thank-you", {
     title: "Thank You",
+    companyName: "Sunny Side Sandcastle",
+  });
+};
+
+// GET ADMIN LOGIN PAGE
+const getAdminLoginPage = (req, res) => {
+  res.render("adminLogin", {
+    title: "Login",
     companyName: "Sunny Side Sandcastle",
   });
 };
@@ -176,9 +199,12 @@ const deleteUser = async (req, res) => {
 module.exports = {
   getHome,
   getBookingPage,
+  getRoom1Page,
+  getRoom2Page,
   getThankYouPage,
   getAll,
   getUserDetails,
+  getAdminLoginPage,
   getAdminPage,
   getUpdatePage,
   updateUser,
