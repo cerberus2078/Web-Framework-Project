@@ -162,12 +162,12 @@ const deletedAdmin = async (req, res) => {
 
 // Verify password
 const verifyPassword = async (req, res) => {
-  const email = req.params.id;
+  const { email, password } = req.body;
   try {
     const admin = await Admin.getOneAdminEmail(email);
     console.log(email);
-    console.log(admin);
-    res.render("edem", { products: admin });
+    // console.log(admin);
+    // res.render("edem", { products: admin });
   } catch (error) {
     console.log(error);
   }
