@@ -117,6 +117,26 @@ h2 {
   object-fit: cover;
 }
 
+.popular{
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rooms-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.room-picture{
+  height: 28vh;
+  width: 90%;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
 .white-overlay {
   background-color: #fff;
   display: flex;
