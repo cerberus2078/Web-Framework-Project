@@ -10,9 +10,9 @@ app.use(express.urlencoded({ extended: true })); // Get the data of the form to 
 // Parse incoming request bodies in JSON format
 app.use(express.json());
 
-
 // Use the route module
 app.use("", require("./routes/users"));
+app.use("", require("./routes/admins"));
 
 // Specify default layout/ main template ie(main.handlebars)
 app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
@@ -21,7 +21,14 @@ app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
 app.set("view engine", "handlebars"); // Use handlebars as a template engine
 
 ///////////// -- EDEM'S PLAYGROUNG -- ////////////////////
-
+// const User = require("./models/Admin"); // MAYBE DELETE LATER
+// Admin.createNewAdmin({
+//   adminID: 1,
+//   firstName: "Edem",
+//   lastName: "Q",
+//   email: "edem@sunnysidesandcastle.com",
+//   password: "password",
+// });
 ///////////// -- END OF EDEM'S PLAYGROUNG -- ///////////////
 
 // Set the folder for static files (css, jpg)

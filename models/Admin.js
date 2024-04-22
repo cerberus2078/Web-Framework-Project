@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongooseAdmin = require("mongoose");
 
-const adminSchema = new mongoose.Schema({
+const adminSchema = new mongooseAdmin.Schema({
   adminID: {
     type: Number,
     required: true,
@@ -23,7 +23,7 @@ const adminSchema = new mongoose.Schema({
   },
 });
 
-const Admin = mongoose.model("Admin", adminSchema);
+const Admin = mongooseAdmin.model("Admin", adminSchema);
 
 // Database Functions Here (CRUD)
 
@@ -37,6 +37,14 @@ const createNewAdmin = (adminData) => {
     console.log(error);
   }
 };
+
+// createNewAdmin({
+//   adminID: 2,
+//   firstName: "Marika",
+//   lastName: "D",
+//   email: "marika@sunnysidesandcastle.com",
+//   password: "password",
+// });
 
 // GET ALL ITEMS IN THE DATABASE
 const getAllAdmins = async () => {
@@ -52,6 +60,17 @@ const getAllAdmins = async () => {
 const getOneAdmin = async (id) => {
   try {
     const admin = await Admin.findOne({ adminID: id });
+    console.log(admin);
+    return admin;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getOneAdminEmail = async (adminEmail) => {
+  try {
+    const admin = await Admin.findOne({ adminID: adminEmail });
+    console.log(admin);
     return admin;
   } catch (error) {
     console.log(error);
@@ -81,6 +100,7 @@ const deleteOneAdmin = async (id) => {
 // Export
 module.exports = {
   createNewAdmin,
+  getOneAdminEmail,
   getAllAdmins,
   getOneAdmin,
   updateOneAdmin,

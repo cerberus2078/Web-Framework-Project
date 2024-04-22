@@ -10,7 +10,6 @@ const dbURI = `mongodb+srv://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}
 mongoose.connect(dbURI);
 
 // Import the User schema
-// const User = require("../models/User"); // MAYBE DELETE LATER
 const User = require("../models/User"); // MAYBE DELETE LATER
 
 // FUNCTIONS FOR ALL THE ROUTES in route/users.js
@@ -144,8 +143,7 @@ const getUserDetails = async (req, res) => {
 // submit (POST) the firstName to the database to update, later on needs to be changed to check-in and check-out dates
 const updateUser = async (req, res) => {
   try {
-    const { userID, firstName, lastName, email, checkIn, checkOut } =
-      req.body;
+    const { userID, firstName, lastName, email, checkIn, checkOut } = req.body;
     if (!userID) {
       return res.status(400).send("User ID (userID) is required");
     }
@@ -172,7 +170,6 @@ const deleteUser = async (req, res) => {
     res.status(500).send("Failed to delete user");
   }
 };
-
 
 // EXPORT MODULES
 module.exports = {

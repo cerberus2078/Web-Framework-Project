@@ -28,4 +28,11 @@
     lastName: 'Acrey',
     email: 'rosa123@mail.com',
     phoneNumber: '+358042128394'
+},
+{
+  adminID: 1,
+  firstName: "Edem",
+  lastName: "Q",
+  email: "edem@sunnysidesandcastle.com",
+  password: "password"
 }

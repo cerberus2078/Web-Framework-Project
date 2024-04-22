@@ -99,7 +99,7 @@ const getAll = async (req, res) => {
   try {
     const allAdmins = await Admin.getAllAdmins();
     console.log(allAdmins);
-    res.render("alladmins", {
+    res.render("edem", {
       products: allAdmins,
     });
   } catch (error) {
@@ -118,7 +118,7 @@ const getAdminDetails = async (req, res) => {
     }
     const admin = await Admin.getOneAdmin(id);
     res.render("edem", {
-      admins: admin.toJSON(),
+      products: admin.toJSON(),
     });
   } catch (err) {
     res.status(404).json({
@@ -130,7 +130,7 @@ const getAdminDetails = async (req, res) => {
 // Update Admin
 
 // submit (POST) the firstName to the database to update, later on needs to be changed to check-in and check-out dates
-const updatedAdmin = async (req, res) => {
+const updateAdmin = async (req, res) => {
   try {
     const { adminID, firstName, lastName, email, password } = req.body;
     if (!adminID) {
@@ -160,11 +160,24 @@ const deletedAdmin = async (req, res) => {
   }
 };
 
+// Verify password
+const verifyPassword = async (req, res) => {
+  const email = req.params.id;
+  try {
+    const admin = await Admin.getOneAdminEmail(email);
+    console.log(email);
+    console.log(admin);
+    res.render("edem", { products: admin });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // EXPORT MODULES
 module.exports = {
-  getHome,
-  getBookingPage,
-  getThankYouPage,
+  //   getHome,
+  //   getBookingPage,
+  //   getThankYouPage,
   getAll,
   getAdminDetails,
   getAdminPage,
@@ -172,4 +185,5 @@ module.exports = {
   updateAdmin,
   deletedAdmin,
   createAdmin,
+  verifyPassword,
 };

@@ -8,9 +8,11 @@ const adminController = require("../controllers/adminController");
 
 //////////-- TESTING STAGE -- //////////
 // Get all users and render to allusers page
-router.get("/allusers", adminController.getAll);
+router.get("/allusers-admin", adminController.getAll);
 // Route for finding one user by userID and rendering edem.handlebars
-router.get("/edem/:id", adminController.getAdminDetails);
+router.get("/edem-admin/:id", adminController.getAdminDetails);
+
+router.get("/admin-login/:id", adminController.verifyPassword);
 
 ///////////-- END OF TESTING -- //////////////
 
@@ -23,21 +25,21 @@ router.get("/edem/:id", adminController.getAdminDetails);
 // // Route for Thank you page
 // router.get("/thank-you", userController.getThankYouPage);
 // Route for the admin page
-router.get("/adminpage-admin", adminController.getAdminPage);
+// router.get("/adminpage-admin", adminController.getAdminPage);
 
-// Route for the admin-crud-update page
-router.get("/admin-crud-update-admin/:id", adminController.getUpdatePage);
+// // Route for the admin-crud-update page
+// router.get("/admin-crud-update-admin/:id", adminController.getUpdatePage);
 
-// Route for deleting crud
-router.get("/admin-crud-update/delete-admin/:id", adminController.deleteAdmin);
+// // Route for deleting crud
+// router.get("/delete-admin/:id", adminController.deleteAdmin);
 
-// Route for POST - CREATE ADMIN
-router.post("/users-admin", adminController.createAdmin);
-// Route for the POST to Update Admin
-router.post("/adminpage-admin", adminController.updateAdmin);
+// // Route for POST - CREATE ADMIN
+// router.post("/users-admin", adminController.createAdmin);
+// // Route for the POST to Update Admin
+// router.post("/adminpage-admin", adminController.updateAdmin);
 
-// Route for deleting admin
-router.get("/delete-admin/:id", adminController.deleteAdmin);
+// // Route for deleting admin
+// router.get("/delete-admin/:id", adminController.deleteAdmin);
 
 // Export the router
 module.exports = router;
