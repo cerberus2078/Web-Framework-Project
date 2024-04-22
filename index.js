@@ -5,10 +5,11 @@ require("dotenv").config(); // Import the dotenv
 
 const app = express(); // Start the server by Creating the express module
 
-// app.use(express.urlencoded({ extended: true })); // Get the data of the form to be able to parse and use it
+app.use(express.urlencoded({ extended: true })); // Get the data of the form to be able to parse and use it
 
 // Parse incoming request bodies in JSON format
 app.use(express.json());
+
 
 // Use the route module
 app.use("", require("./routes/users"));
