@@ -5,6 +5,9 @@ npm install nodemon --save-dev
 npm install express
 npm install express-handlebars
 
+for POST method:
+npm install body-parser
+
 PACKAGE.JSON/SCRIPTS - "dev": "nodemon index",
 
 MONGODB
