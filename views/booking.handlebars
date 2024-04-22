@@ -6,22 +6,46 @@
     <title>Booking form</title>
 </head>
 <body>
+<header>    
 {{>header}}
-<div class="booking-page-container">
+</header>
+<main>
+<section class="booking-page-container">
     <h1>Booking form</h1>
-    <div class="booking-text"><h4>Please fill in all of the fields below:</h4></div>
+    <p class="booking-text"><h4>Please fill in all of the fields below:</h4></p>
     <form method="POST" action="/users">
-        <div class="fields">
-        <input class="userId txtField" type="text" placeholder="Id" name="userID" required><br>
-        <input class="firstName txtField" type="text" placeholder="First Name" name="firstName" required><br>
-        <input class="lastName txtField" type="text" placeholder="Last Name" name="lastName" required><br>
-        <input class="email txtField" type="text" placeholder="Email" name="email" required><br>
-        <input class="phoneNumber txtField" type="text" placeholder="Phone Number" name="phoneNumber" required><br>
-        </div>
+        <fieldset>
+            <legend>User Information</legend>
+            <div class="fields">
+                <lable for="userID">User ID:</lable>
+                <input class="userId txtField" type="text" placeholder="Id" name="userID" required><br>
+
+                <lable for="firstName">First Name:</lable>
+                <input class="firstName txtField" type="text" placeholder="First Name" name="firstName" required><br>
+
+                <lable for="lastName">Last Name:</lable>
+                <input class="lastName txtField" type="text" placeholder="Last Name" name="lastName" required><br>
+
+                <lable for="email">Email:</lable>
+                <input class="email txtField" type="text" placeholder="Email" name="email" required><br>
+
+                <lable for="phoneNumber">Phone Number:</lable>
+                <input class="phoneNumber txtField" type="text" placeholder="Phone Number" name="phoneNumber" required><br>
+
+                <lable for="checkIn">Check-in Date:</lable>
+                <input class="checkIn txtField" type="text" placeholder="DD.MM.YYYY" name="checkIn" required><br>
+
+                <lable for="checkOut">Check-Out  Date:</lable>
+                <input class="checkOut txtField" type="text" placeholder="DD.MM.YYYY" name="checkOut" required><br>
+            </div>
+        </fieldset>    
         <button class="continue-button" type="submit" value="Submit user information" onclick="/thank-you">Submit</button>        
     </form>
-</div>
+</section>
+</main>
+<footer>
 {{>footer}}
+</footer>
 </body>
 </html>
 
