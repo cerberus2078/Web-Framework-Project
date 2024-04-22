@@ -1,0 +1,77 @@
+{{!-- this page cannot use style.css from public and throws an error --}}
+{{!-- I've hardcoded the style.css, but it still has the error --}}
+{{!-- trying to fix the error rn --}}
+{{!-- To-Do: add the grid for the users to make it look better --}}
+<link rel="stylesheet" href="/style.css"/>
+
+
+{{>header}}
+<div class="admin-page-container">
+    <h1>ADMIN PAGE for {{companyName}} (views/admin-crud-update.handlebars) update + delete button with alert window
+    </h1>
+    <h2>You can change the data of the user {{user.userID}} here:</h2>
+    <div class="admin-edit-container">
+
+        {{!-- getting one user from mongodb --}}
+        <div>
+            <p>User ID: {{user.userID}}</p>
+            <p>Name: {{user.firstName}} {{user.lastName}}</p>
+            <p>Email: {{user.email}}</p>
+            <p>Phone: {{user.phoneNumber}}</p>
+            <p>Check-In Date: to be added here</p>
+            <p>Check-Out Date: to be added here</p>
+        </div>
+
+        {{!-- update user data --}}
+        <form action="/adminpage" method="POST" autocomplete="off">
+        {{!-- fix this later \/ --}}
+            {{!-- <div class="new-date">
+                <p>New Check-In Date:</p>
+                <input class="check-in field" id="new-check-in-date" placeholder="New Check-In Date"
+                    type="new-check-in-date" value="" title="">
+            </div>
+            <div class="new-date">
+                <p>New Check-Out Date:</p>
+                <input class="check-out field" id="new-check-out-date" placeholder="New Check-Out Date"
+                    type="new-check-out-date" value="" title="">
+            </div> --}}
+
+            {{!-- important comment \/ --}}
+            <p style="color: rgb(183, 15, 15)">this is a comment: I will make it so that the name can be updated,
+                but later on we should change it to check-in and out dates, I just don't want to mess up the database
+                for you guys</p>
+
+            <input type="hidden" name="userID" value="{{user.userID}}">
+            <div class="new-name">
+                <p>New First Name:</p>
+                <input class="name field" id="new-name-date" placeholder="New First Name" name="firstName"
+                    type="new-name" value="{{user.firstName}}" title="">
+            </div>
+            {{!-- delete is not working --}}
+            <button onclick="confirmDelete()" id="delete-reservation" class="delete-button" type="submit">Delete
+                Reservation</button>
+
+            <button class="continue-button" type="submit">Save User</button>
+        </form>
+
+        {{!-- the script for the alert window but it's not connected to the database --}}
+        {{!-- this code can be changed --}}
+        <script>
+            function confirmDelete() {
+                var x;
+                if (confirm("Are you sure you want to delete this reservation?") == true) {
+                    x = "Reservation was deleted";
+                } else {
+                    x = "Reservation was not deleted";
+                }
+                return x;
+            }
+        </script>
+    </div>
+    <br>
+    <a class="button" href="/adminpage">Go Back</a>
+</div>
+{{>footer}}
+</body>
+
+</html>
