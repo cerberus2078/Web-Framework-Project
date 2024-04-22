@@ -51,7 +51,7 @@ const getAllAdmins = async () => {
 // READ ONE BY adminID FUNCTION
 const getOneAdmin = async (id) => {
   try {
-    const admin = await Admin.findOne({ userID: id });
+    const admin = await Admin.findOne({ adminID: id });
     return admin;
   } catch (error) {
     console.log(error);
