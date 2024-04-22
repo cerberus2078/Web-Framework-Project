@@ -144,7 +144,7 @@ const getUserDetails = async (req, res) => {
 // submit (POST) the firstName to the database to update, later on needs to be changed to check-in and check-out dates
 const updateUser = async (req, res) => {
   try {
-    const { userID, firstName, lastName, email, checkInDate, checkOutDate } =
+    const { userID, firstName, lastName, email, checkIn, checkOut } =
       req.body;
     if (!userID) {
       return res.status(400).send("User ID (userID) is required");
@@ -152,7 +152,7 @@ const updateUser = async (req, res) => {
     // Update only the firstName field for the user with the given userID
     await User.updateOneUser(
       { userID },
-      { firstName, lastName, email, checkInDate, checkOutDate }
+      { firstName, lastName, email, checkIn, checkOut }
     );
     res.redirect("/adminpage");
   } catch (error) {
@@ -164,13 +164,15 @@ const updateUser = async (req, res) => {
 // Delete user
 const deleteUser = async (req, res) => {
   const id = req.params.id;
-  const deletedUser = await User.deleteOneUser(id);
   try {
+    const deletedUser = await User.deleteOneUser(id);
     res.redirect("/adminpage");
   } catch (error) {
     console.log(error);
+    res.status(500).send("Failed to delete user");
   }
 };
+
 
 // EXPORT MODULES
 module.exports = {
