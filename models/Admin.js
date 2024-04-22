@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-  userID: {
+const adminSchema = new mongoose.Schema({
+  adminID: {
     type: Number,
     required: true,
   },
@@ -17,63 +17,51 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  phoneNumber: {
+  password: {
     type: String,
     required: true,
   },
-  // roomNumber: {
-  //  type: String,
-  //  required: false,
-  // },
-  // roomNumber: {
-  //   type: String,
-  //   required: false,
-  // },
-  // bookingDate: {
-  //   type: String,
-  //   required: false,
-  // },
 });
 
-const User = mongoose.model("User", userSchema);
+const Admin = mongoose.model("Admin", adminSchema);
 
 // Database Functions Here (CRUD)
 
-// CREATE ONE BY USER_ID FUNCTION
+// CREATE ONE BY adminID FUNCTION
 
-const createNewUser = (userData) => {
+const createNewAdmin = (adminData) => {
   try {
-    const newUser = new User(userData);
-    newUser.save();
+    const newAdmin = new Admin(adminData);
+    newAdmin.save();
   } catch (error) {
     console.log(error);
   }
 };
 
 // GET ALL ITEMS IN THE DATABASE
-const getAllUsers = async () => {
+const getAllAdmins = async () => {
   try {
-    const users = await User.find().lean();
-    return users;
+    const admins = await Admin.find().lean();
+    return admins;
   } catch (error) {
     console.log(error);
   }
 };
 
-// READ ONE BY userID FUNCTION
-const getOneUser = async (id) => {
+// READ ONE BY adminID FUNCTION
+const getOneAdmin = async (id) => {
   try {
-    const user = await User.findOne({ userID: id });
-    return user;
+    const admin = await Admin.findOne({ userID: id });
+    return admin;
   } catch (error) {
     console.log(error);
   }
 };
 
-// UPDATE ONE BY USER_ID function
-const updateOneUser = async (id, updateData) => {
+// UPDATE ONE BY adminID function
+const updateOneAdmin = async (id, updateData) => {
   try {
-    const updatedUser = await User.findOneAndUpdate(id, updateData, {
+    const updatedAdmin = await Admin.findOneAndUpdate(id, updateData, {
       new: true,
     });
   } catch (error) {
@@ -81,10 +69,10 @@ const updateOneUser = async (id, updateData) => {
   }
 };
 
-// DELETE ONE BY USER_ID FUNCTION
-const deleteOneUser = async (id) => {
+// DELETE ONE BY adminID FUNCTION
+const deleteOneAdmin = async (id) => {
   try {
-    const deletedUser = await User.findOneAndDelete({ userID: id });
+    const deletedAdmin = await Admin.findOneAndDelete({ adminID: id });
   } catch (err) {
     console.log(err);
   }
@@ -92,9 +80,9 @@ const deleteOneUser = async (id) => {
 
 // Export
 module.exports = {
-  createNewUser,
-  getAllUsers,
-  getOneUser,
-  updateOneUser,
-  deleteOneUser,
+  createNewAdmin,
+  getAllAdmins,
+  getOneAdmin,
+  updateOneAdmin,
+  deleteOneAdmin,
 };
