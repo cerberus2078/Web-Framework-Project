@@ -21,18 +21,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // roomNumber: {
-  //  type: String,
-  //  required: false,
-  // },
-  // roomNumber: {
-  //   type: String,
-  //   required: false,
-  // },
-  // bookingDate: {
-  //   type: String,
-  //   required: false,
-  // },
+  checkIn: {
+    type: String,
+    required: true,
+  },
+  checkOut: {
+    type: String,
+    required: true,
+  },
 });
 
 const User = mongoose.model("User", userSchema);
