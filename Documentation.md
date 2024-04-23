@@ -8,6 +8,10 @@ npm install express-handlebars
 for POST method:
 npm install body-parser
 
+For Emails:
+npm install nodemailer
+npm install nodemailer-express-handlebars
+
 PACKAGE.JSON/SCRIPTS - "dev": "nodemon index",
 
 MONGODB

@@ -1,5 +1,4 @@
 // All necessary imports
-
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
@@ -78,6 +77,36 @@ const getUpdatePage = async (req, res) => {
   }
 };
 
+
+// email
+const nodemailer = require('nodemailer');
+const hbs = require('nodemailer-express-handlebars')
+
+// create a nodemailer transporter
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  port: 465,
+  secure: true,
+  secureConnection: false,
+  auth: {
+    user: 'noreplyssshotel@gmail.com',
+    pass: 'itxn pdek taby ghbx '
+  },
+  tls: {rejectUnauthorized: true}
+});
+
+transporter.use('compile', hbs({
+  viewEngine: {
+      extname: '.handlebars',
+      layoutsDir: '../views/',
+      defaultLayout: false,
+      partialsDir: '../views/',
+  },
+  viewPath: 'templates/',
+  extName: '.handlebars'
+}));
+
+
 // CREATE USER
 const createUser = async (req, res) => {
   try {
@@ -90,6 +119,10 @@ const createUser = async (req, res) => {
       checkIn,
       checkOut,
     } = req.body;
+
+    console.log("Received user data:", req.body);
+
+    // create new user
     await User.createNewUser({
       userID,
       firstName,
@@ -99,12 +132,42 @@ const createUser = async (req, res) => {
       checkIn,
       checkOut,
     });
-    res.redirect("/thank-you");
+
+    console.log("User created successfully");
+
+    // Send email to the user
+    const mailOptions = {
+      from: "noreplyssshotel@gmail.com",
+      to: email,
+      subject: "Room Reservation",
+      template: "../views/booking-confirmation",
+      context: {
+        name: `${firstName} ${lastName}`,
+        checkIn,
+        checkOut
+      },
+      attachments: [{
+        filename: 'logo2.png',
+        path: "controllers\\logo2.png",
+        cid: 'logo2'
+      }]
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email:", error);
+      } else {
+        console.log("Email sent:", info.response);
+      }
+    });
+
+    // Redirect to the thank-you page
+    return res.redirect("/thank-you");
   } catch (error) {
-    console.error(error);
-    res.status(500).send("Error creating user");
+    console.error("Error creating user:", error);
+    return res.status(500).send("Error creating user");
   }
 };
+
 
 // GET ALL USERS
 const getAll = async (req, res) => {
@@ -120,7 +183,6 @@ const getAll = async (req, res) => {
 };
 
 // userDetails
-
 const getUserDetails = async (req, res) => {
   try {
     const id = Number(req.params.id); // Parse string to integer
@@ -140,8 +202,6 @@ const getUserDetails = async (req, res) => {
 };
 
 // Update User
-
-// submit (POST) the firstName to the database to update, later on needs to be changed to check-in and check-out dates
 const updateUser = async (req, res) => {
   try {
     const { userID, firstName, lastName, email, checkIn, checkOut } =
@@ -149,7 +209,7 @@ const updateUser = async (req, res) => {
     if (!userID) {
       return res.status(400).send("User ID (userID) is required");
     }
-    // Update only the firstName field for the user with the given userID
+    
     await User.updateOneUser(
       { userID },
       { firstName, lastName, email, checkIn, checkOut }

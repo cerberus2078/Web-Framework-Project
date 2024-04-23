@@ -1,0 +1,25 @@
+{{!-- this is the template for the email that will be send to the user after reserving a room --}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Reservation Confirmation</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="reservation-confirmation">
+        {{!-- css is not working --}}
+        {{!-- https://stackoverflow.com/questions/26005498/external-html-file-with-css-as-email-content-in-nodemailer --}}
+        <h1>Room Reservation Confirmation</h1>
+        <p>Hello {{name}},</p>
+        <p>Your room reservation has been successfully processed.</p>
+        <p>Check-in Date: {{checkIn}}</p>
+        <p>Check-out Date: {{checkOut}}</p>
+        <p>Thank you for choosing Sunny Side Sandcastle!</p>
+    {{!-- images source is from userController.js -> attachments --}}
+    <img src="cid:logo2">
+    </div>
+</body>
+</html>

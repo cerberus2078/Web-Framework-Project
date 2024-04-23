@@ -86,6 +86,18 @@ const deleteOneUser = async (id) => {
   }
 };
 
+
+
+
+//------------ Email Function Testing Start ------------
+// https://www.npmjs.com/package/nodemailer-express-handlebars
+
+
+//------------ Email Function End ------------
+
+
+
+
 // Export
 module.exports = {
   createNewUser,
