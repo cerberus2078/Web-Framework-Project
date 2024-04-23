@@ -25,7 +25,7 @@ router.get("/room1", userController.getRoom1Page);
 // Route for room 2 page
 router.get("/room2", userController.getRoom2Page);
 // Route for Thank you page
-router.get("/thank-you", userController.getThankYouPage);
+// router.get("/thank-you", userController.getThankYouPage);
 // Route for the admin login page
 router.get("/adminLogin", userController.getAdminLoginPage);
 // Route for the admin page
@@ -43,7 +43,7 @@ router.post("/users", userController.createUser);
 router.post("/adminpage", userController.updateUser);
 
 // Route for deleting user
-router.get("/delete/:id", userController.deleteUser);
+router.get("/delete/:id", userController.deleteUser_User);
 
 // Export the router
 module.exports = router;

@@ -9,40 +9,40 @@
 <div class="admin-page-container">
     <h1>ADMIN PAGE for {{companyName}} (views/admin-crud-update.handlebars) update + delete button with alert window
     </h1>
-    <h2>You can change the data of the user {{user.userID}} here:</h2>
+    <h2>You can change the data of the user {{products.userID}} here:</h2>
     <div class="admin-edit-container">
 
         {{!-- getting one user from mongodb --}}
         <div>
-            <p>User ID: {{user.userID}}</p>
-            <p>Name: {{user.firstName}} {{user.lastName}}</p>
-            <p>Email: {{user.email}}</p>
-            <p>Phone: {{user.phoneNumber}}</p>
-            <p>Check-In Date: {{user.checkIn}}</p>
-            <p>Check-Out Date: {{user.checkOut}}</p>
+            <p>User ID: {{products.userID}}</p>
+            <p>Name: {{products.firstName}} {{user.lastName}}</p>
+            <p>Email: {{products.email}}</p>
+            <p>Phone: {{products.phoneNumber}}</p>
+            <p>Check-In Date: {{products.checkIn}}</p>
+            <p>Check-Out Date: {{products.checkOut}}</p>
         </div>
 
         {{!-- update user data --}}
         <form action="/adminpage" method="POST" autocomplete="off">
 
-            <input type="hidden" name="userID" value="{{user.userID}}">
+            <input type="hidden" name="userID" value="{{products.userID}}">
 
             <div class="new-name">
                 <p>New First Name:</p>
                 <input class="name field" id="new-name-date" placeholder="New First Name" name="firstName"
-                    type="new-name" value="{{user.firstName}}" title="">
+                    type="new-name" value="{{products.firstName}}" title="">
             </div>
 
             <div class="new-checkIn">
                 <p>New Check-In Date:</p>
                 <input class="checkIn field" id="new-checkIn" placeholder="New Check-In" name="checkIn"
-                    type="new-checkIn" value="{{user.checkIn}}" title="">
+                    type="new-checkIn" value="{{products.checkIn}}" title="">
             </div>
 
             <div class="new-checkOut">
                 <p>New Check-Out Date:</p>
                 <input class="checkOut field" id="new-checkOut" placeholder="New Check-Out" name="checkOut"
-                    type="new-checkOut" value="{{user.checkOut}}" title="">
+                    type="new-checkOut" value="{{products.checkOut}}" title="">
             </div>
 
             {{!-- To-Do: fix the delete buttn from this page --}}

@@ -48,10 +48,13 @@ const getRoom2Page = (req, res) => {
 };
 
 // GET THANK YOU PAGE
-const getThankYouPage = (req, res) => {
+const getThankYouPage = async (req, res) => {
+  const { userID } = req.body;
+  const user = await User.getOneUser(userID);
   res.render("thank-you", {
     title: "Thank You",
     companyName: "Sunny Side Sandcastle",
+    products: user,
   });
 };
 
@@ -70,7 +73,7 @@ const getAdminPage = async (req, res) => {
     res.render("admin", {
       title: "Admin",
       companyName: "Sunny Side Sandcastle",
-      users: allUsers,
+      products: allUsers,
     });
   } catch (error) {
     console.log(error);
@@ -90,7 +93,7 @@ const getUpdatePage = async (req, res) => {
     // console.log(user);
     res.render("admin-crud-update", {
       title: "UpdatePage",
-      user: user.toJSON(),
+      products: user.toJSON(),
       //   users: user,
     });
   } catch (err) {
@@ -112,7 +115,7 @@ const createUser = async (req, res) => {
       checkIn,
       checkOut,
     } = req.body;
-    await User.createNewUser({
+    const newUser = await User.createNewUser({
       userID,
       firstName,
       lastName,
@@ -121,7 +124,9 @@ const createUser = async (req, res) => {
       checkIn,
       checkOut,
     });
-    res.redirect("/thank-you");
+    res.render("thank-you", {
+      products: newUser.toJSON(),
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error creating user");
@@ -152,7 +157,7 @@ const getUserDetails = async (req, res) => {
     }
     const user = await User.getOneUser(id);
     res.render("edem", {
-      users: user.toJSON(),
+      products: user.toJSON(),
     });
   } catch (err) {
     res.status(404).json({
@@ -193,6 +198,17 @@ const deleteUser = async (req, res) => {
     res.status(500).send("Failed to delete user");
   }
 };
+// Delete user _USER
+const deleteUser_User = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const deletedUser = await User.deleteOneUser(id);
+    res.redirect("/booking");
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Failed to delete user");
+  }
+};
 
 // EXPORT MODULES
 module.exports = {
@@ -209,4 +225,5 @@ module.exports = {
   updateUser,
   deleteUser,
   createUser,
+  deleteUser_User,
 };

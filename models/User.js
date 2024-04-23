@@ -37,10 +37,11 @@ const User = mongoose.model("User", userSchema);
 
 // CREATE ONE BY USER_ID FUNCTION
 
-const createNewUser = (userData) => {
+const createNewUser = async (userData) => {
   try {
     const newUser = new User(userData);
-    newUser.save();
+    await newUser.save();
+    return newUser;
   } catch (error) {
     console.log(error);
   }

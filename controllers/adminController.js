@@ -165,9 +165,10 @@ const verifyPassword = async (req, res) => {
   const { email, password } = req.body;
   try {
     const admin = await Admin.getOneAdminEmail(email);
-    console.log(email);
+    console.log("email: " + email);
+    console.log("password: " + password);
     // console.log(admin);
-    // res.render("edem", { products: admin });
+    res.render("adminpage", { products: admin });
   } catch (error) {
     console.log(error);
   }

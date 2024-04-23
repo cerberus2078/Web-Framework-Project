@@ -12,7 +12,7 @@ router.get("/allusers-admin", adminController.getAll);
 // Route for finding one user by userID and rendering edem.handlebars
 router.get("/edem-admin/:id", adminController.getAdminDetails);
 
-router.get("/admins", adminController.verifyPassword);
+router.post("/admins", adminController.verifyPassword);
 
 ///////////-- END OF TESTING -- //////////////
 
