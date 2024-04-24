@@ -165,7 +165,16 @@ const verifyPassword = async (req, res) => {
   const { email, password } = req.body;
   try {
     const admin = await Admin.getOneAdminEmail(email);
-    res.redirect("/adminpage");
+    if (admin && email === admin.email && password === admin.password) {
+      res.redirect("/adminpage");
+    } else {
+      //   res.send("FUCK OFF YOU'RE AN IMPOSTER");
+
+      res.render("adminLogin", {
+        title: "Login Fail",
+        loginCheck: "Password/ email was wrong, try again",
+      });
+    }
   } catch (error) {
     console.log(error);
   }
