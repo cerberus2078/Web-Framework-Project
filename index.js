@@ -1,7 +1,11 @@
 const express = require("express"); // Import Express
 const exphbs = require("express-handlebars"); // Import Express-handlebars
 const mongoose = require("mongoose");
+const nodemailer = require('nodemailer'); // import email module
+// const exphbs = require("nodemailer-express-handlebars");// import email module for express handlebars
+const path = require("path");
 require("dotenv").config(); // Import the dotenv
+
 
 const app = express(); // Start the server by Creating the express module
 
