@@ -69,7 +69,7 @@ const getOneAdmin = async (id) => {
 
 const getOneAdminEmail = async (adminEmail) => {
   try {
-    const admin = await Admin.findOne({ adminID: adminEmail });
+    const admin = await Admin.findOne({ email: adminEmail });
     console.log("admin: " + admin);
     return admin;
   } catch (error) {
