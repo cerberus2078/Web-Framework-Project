@@ -130,11 +130,13 @@ h2 {
   align-items: center;
 }
 
-.room-picture{
-  height: 28vh;
+.main-page-room-picture{
+  height: 29vh;
   width: 90%;
   border-radius: 20px;
   object-fit: cover;
+  margin-left: 15px;
+  margin-top: 13px;
 }
 
 .white-overlay {
