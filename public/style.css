@@ -6,16 +6,27 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   max-height: 100vh;
   background-color: white;
+  color: #000;
 }
 
 a {
   color: #ad4b28;
   text-decoration: none;
+  border: 2px solid transparent;
+  padding: 2px;
 }
 
 a:hover {
   color: #6f2c14;
+  border: 2px solid;
 }
+
+a:focus {
+  /* color: #eb6331; */
+  border: 2px dashed;
+  outline: 1px;
+}
+
 
 h2 {
   /* padding: inherit; */
@@ -84,8 +95,8 @@ h2 {
 #toggle-high-contrast {
   background: none;
   color: inherit;
-  border: none;
-  padding: 0;
+  border: 2px transparent;
+  padding: 2px;
   margin-right: 30px;
   font: inherit;
   cursor: pointer;
@@ -94,6 +105,13 @@ h2 {
 
 #toggle-high-contrast:hover {
   color: #6f2c14;
+}
+
+#toggle-high-contrast:focus {
+  color: #6f2c14;
+  border: 2px dashed;
+  padding: 0px;
+  outline: 2px;
 }
 
 .login-page-button {
@@ -153,7 +171,7 @@ h2 {
   background-color: #b6f0fc;
   color: black;
   margin: 0 auto;
-  border: none;
+  border: 2px transparent;
   padding: 10 px;
   width: 40%;
   border-radius: 5px;
@@ -191,6 +209,15 @@ h2 {
 .fill-up-booking-form-button:hover {
   background-color: #a1e7f5;
   color: black;
+  border: 2px transparent;
+}
+
+.fill-up-booking-form-button:focus {
+  background-color: #a1e7f5;
+  /* color: black; */
+  border: 2px dashed;
+  padding: 0px;
+  outline: 2px;
 }
 
 .login-page-container {
@@ -224,7 +251,7 @@ h2 {
 .continue-button {
   background: #2f9ac8;
   color: white;
-  border: none;
+  border: 2px transparent;
   border-radius: 10px;
   padding: 10px;
   font-size: 20px;
@@ -233,6 +260,12 @@ h2 {
 
 .continue-button:hover {
   background: #2a8eb9;
+}
+
+.continue-button:focus{
+  border: 2px dashed;
+  border-color: #ffffff;
+  outline: 2px;
 }
 
 .update-button {
@@ -274,6 +307,10 @@ h2 {
   display: flex;
   justify-content: center;
   margin: 30px;
+}
+
+fieldset {
+  border: transparent;
 }
 
 .room-photos-container {
@@ -475,11 +512,19 @@ tr {
 .txtField {
   width: 200px;
   height: 50px;
+  border: 2px transparent;
   background-color: white;
-  color: rgb(44, 43, 43);
+  color: rgb(26, 25, 25);
   border-radius: 10px;
   display: flexbox;
   margin: 15px;
+}
+
+.txtField:focus{
+  color: #6f2c14;
+  border: 2px dashed;
+  outline: 2px;
+  background-color: #f0feff;
 }
 
 .admin-id-search-form {
@@ -513,11 +558,96 @@ h3 {
   margin-left: 10px;
 }
 
-/* high-contrast mode (requires js) */
-.high-contrast {
-  color: #fff;
+/* high-contrast mode (javascript was hardcoded into the header.handlebars) */
+.high-contrast{
   background-color: #000;
+  color: #fff;
+  /* border: 2px solid white; */
 }
+
+.high-contrast-header-footer{
+  border: 2px solid white;
+  background-color: black !important;
+  color: white;
+}
+
+.high-contrast-link{
+  color: yellow !important;
+}
+
+.high-contrast-link:hover{
+  border: 2px solid transparent !important;
+  color: yellow !important;
+  text-decoration: underline !important;
+}
+
+.high-contrast-link:focus{
+  border: 2px dashed;
+  outline: 1px;
+  color: yellow !important;
+}
+
+.high-contrast-button{
+  background-color: black;
+  border: 2px solid yellow;
+  color: yellow;
+}
+
+.high-contrast-button:hover{
+  text-decoration: underline;
+  background-color: black !important;
+}
+
+.high-contrast-blue-container{
+  background-color: #000;
+  color: #fff;
+  border: 2px solid white;
+}
+
+.high-contrast-text{
+  background-color: #000;
+  color: #fff;
+}
+
+.high-contrast-link-logo{
+  border: 2px solid transparent;
+}
+
+.high-contrast-link-logo:hover{
+  border: 2px dashed transparent;
+}
+
+.high-contrast-link-logo:focus{
+  border: 2px dashed yellow;
+}
+
+.high-contrast-toggle-high-contrast:hover{
+  color: rgb(61, 255, 47) !important;
+}
+
+.high-contrast-toggle-high-contrast:focus{
+  color: rgb(61, 255, 47) !important;
+}
+
+.high-contrast-txtField{
+  background-color: #000;
+  border: 2px solid yellow;
+  color: white;
+}
+
+.high-contrast-txtField:focus{
+  background-color: #000;
+  border: 3px solid yellow;
+  color: white;
+}
+
+/* usefull links for the high contrast mode:
+https://blog.logrocket.com/boost-accessibility-high-contrast-users-css/
+http://www.colorsontheweb.com/color-theory/color-contrast
+https://www.perkins.org/resource/choosing-high-contrast-color-schemes-for-low-vision/
+https://www.chhs.colostate.edu/accessibility/best-practices-how-tos/color-contrast/
+
+ */
 
 /* for phones */
 @media only screen and (max-width: 800px) {
