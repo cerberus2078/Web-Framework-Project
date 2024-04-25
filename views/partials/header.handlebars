@@ -1,12 +1,74 @@
 <header>
-    <div class="header">
-        {{!-- <a aria-label="SynnySideSuncastle logo" href="/"><img class="logo-header-footer" src="../../public/logo2.png"></a> --}}
-        {{!-- this one is supposed to work but it doesnt /\ --}}
-        {{!-- <a aria-label="SynnySideSuncastle logo" href="/"><img class="logo-header-footer" src="{{this.src}}"></a> --}}
-        <a aria-label="SynnySideSuncastle logo" href="/"><img class="logo-header-footer" src="images/logo2.png"></a>
+    <div id="header" class="header">
+        <a class="link-logo" aria-label="SynnySideSuncastle logo" href="/"><img id="logo" class="logo-header-footer" src="images/logo2.png"></a>
         <div class="right-side-header">
             <button id="toggle-high-contrast">High Contrast Mode</button>
-            <a class="login-page-button" href="/adminLogin">Admin Login</a>
+            <a class="login-page-button link" href="/adminLogin">Admin Login</a>
         </div>
     </div>
+
+    <script>
+        var toggleButton = document.getElementById("toggle-high-contrast");
+
+        toggleButton.addEventListener("click", function (event) {
+
+            // toggle high contrast for the body
+            document.body.classList.toggle("high-contrast");
+
+            // blue selectors go bye bye
+            var blueContainer = document.getElementById('blue-container');
+            blueContainer.classList.toggle('high-contrast-blue-container');
+
+            // button colour change
+            var button = document.getElementById('button');
+            button.classList.toggle('high-contrast-button');
+
+            // high-contrast colour toggle change
+            var button = document.getElementById('toggle-high-contrast');
+            button.classList.toggle('high-contrast-toggle-high-contrast');
+    
+            // header and footer change
+            var header = document.getElementById('header');
+            header.classList.toggle('high-contrast-header-footer');
+            var footer = document.getElementById('footer');
+            footer.classList.toggle('high-contrast-header-footer');
+
+            // change multiple links (all links)
+            var links = document.getElementsByClassName('link');
+            for (var i = 0; i < links.length; i++) {
+                links[i].classList.toggle('high-contrast-link');
+            }
+
+            // logo header change
+            var logo = document.getElementById('logo');
+            var currentSrc = logo.getAttribute('src');
+            var newSrc = currentSrc && currentSrc.includes('logoHC.png') ? 'images/logo2.png' : 'images/logoHC.png';
+            logo.setAttribute('src', newSrc);
+
+            // logo footer change
+            var logo = document.getElementById('logoF');
+            var currentSrc = logo.getAttribute('src');
+            var newSrc = currentSrc && currentSrc.includes('logoHC.png') ? 'images/logo2.png' : 'images/logoHC.png';
+            logo.setAttribute('src', newSrc);
+
+            // change logo links
+            var logoLinks = document.getElementsByClassName('link-logo');
+            for (var p = 0; p < logoLinks.length; p++) {
+                logoLinks[p].classList.toggle('high-contrast-link-logo');
+            }
+
+            // change copyright text at the bottom of the page
+            var texts = document.getElementsByClassName('text');
+            for (var u = 0; u < texts.length; u++) {
+                texts[u].classList.toggle('high-contrast');
+            }
+
+            // change multiple fields (all fields)
+            var fields = document.getElementsByClassName('txtField');
+            for (var f = 0; f < fields.length; f++) {
+                fields[f].classList.toggle('high-contrast-txtField');
+            }
+
+        });
+    </script>
 </header>
