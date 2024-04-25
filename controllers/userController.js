@@ -102,35 +102,36 @@ const getUpdatePage = async (req, res) => {
   }
 };
 
-
 // email
-const nodemailer = require('nodemailer');
-const hbs = require('nodemailer-express-handlebars')
+const nodemailer = require("nodemailer");
+const hbs = require("nodemailer-express-handlebars");
 
 // create a nodemailer transporter
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   port: 465,
   secure: true,
   secureConnection: false,
   auth: {
-    user: 'noreplyssshotel@gmail.com',
-    pass: 'itxn pdek taby ghbx '
+    user: "noreplyssshotel@gmail.com",
+    pass: "itxn pdek taby ghbx ",
   },
-  tls: {rejectUnauthorized: true}
+  tls: { rejectUnauthorized: true },
 });
 
-transporter.use('compile', hbs({
-  viewEngine: {
-      extname: '.handlebars',
-      layoutsDir: '../views/',
+transporter.use(
+  "compile",
+  hbs({
+    viewEngine: {
+      extname: ".handlebars",
+      layoutsDir: "../views/",
       defaultLayout: false,
-      partialsDir: '../views/',
-  },
-  viewPath: 'templates/',
-  extName: '.handlebars'
-}));
-
+      partialsDir: "../views/",
+    },
+    viewPath: "templates/",
+    extName: ".handlebars",
+  })
+);
 
 // CREATE USER
 const createUser = async (req, res) => {
@@ -144,7 +145,6 @@ const createUser = async (req, res) => {
       checkIn,
       checkOut,
     } = req.body;
-    
 
     // create new user
     const newUser = await User.createNewUser({
@@ -168,13 +168,15 @@ const createUser = async (req, res) => {
       context: {
         name: `${firstName} ${lastName}`,
         checkIn,
-        checkOut
+        checkOut,
       },
-      attachments: [{
-        filename: 'logo2.png',
-        path: "controllers\\logo2.png",
-        cid: 'logo2'
-      }]
+      attachments: [
+        {
+          filename: "logo2.png",
+          path: "controllers\\logo2.png",
+          cid: "logo2",
+        },
+      ],
     };
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
@@ -198,8 +200,6 @@ const createUser = async (req, res) => {
     return res.status(500).send("Error creating user");
   }
 };
-
-
 
 // GET ALL USERS
 const getAll = async (req, res) => {
@@ -240,7 +240,7 @@ const updateUser = async (req, res) => {
     if (!userID) {
       return res.status(400).send("User ID (userID) is required");
     }
-    
+
     await User.updateOneUser(
       { userID },
       { firstName, lastName, email, checkIn, checkOut }
@@ -255,6 +255,9 @@ const updateUser = async (req, res) => {
 // Delete user
 const deleteUser = async (req, res) => {
   const id = req.params.id;
+  if (isNaN(id)) {
+    throw new Error("Invalid user ID");
+  }
   try {
     const deletedUser = await User.deleteOneUser(id);
     res.redirect("/adminpage");

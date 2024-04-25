@@ -4,6 +4,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+// Import express validator
+const { body, validationResult } = require("express-validator");
+
 // Connect to the mongodb database
 const dbURI = `mongodb+srv://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@${process.env.CLUSTER}.mongodb.net/${process.env.DB}?retryWrites=true&w=majority&appName=Cluster0`;
 
@@ -13,32 +16,6 @@ mongoose.connect(dbURI);
 const Admin = require("../models/Admin"); // MAYBE DELETE LATER
 
 // FUNCTIONS FOR ALL THE ROUTES in route/admins.js
-
-// // HOME ROOT
-// const getHome = (req, res) => {
-//   //   res.send("INDEX PAGE SHOWING HERE WITH MVC");
-//   res.render("index", {
-//     title: "Home",
-//     companyName: "Sunny Side Sandcastle",
-//   });
-// };
-
-// // GET BOOKING PAGE
-// const getBookingPage = (req, res) => {
-//   //   res.send("INDEX PAGE SHOWING HERE WITH MVC");
-//   res.render("booking", {
-//     title: "Booking",
-//     companyName: "Sunny Side Sandcastle",
-//   });
-// };
-
-// // GET THANK YOU PAGE
-// const getThankYouPage = (req, res) => {
-//   res.render("thank-you", {
-//     title: "Thank You",
-//     companyName: "Sunny Side Sandcastle",
-//   });
-// };
 
 // GET ADMIN
 const getAdminPage = async (req, res) => {
@@ -77,7 +54,7 @@ const getUpdatePage = async (req, res) => {
 };
 
 // CREATE Admin
-const createAdmin = async (req, res) => {
+const createAdmin_OLD = async (req, res) => {
   try {
     const { adminID, firstName, lastName, email, password } = req.body;
     await Admin.createNewAdmin({
@@ -87,7 +64,7 @@ const createAdmin = async (req, res) => {
       email,
       password,
     });
-    res.redirect("/adminpage");
+    res.redirect("/adminLogin");
   } catch (error) {
     console.error(error);
     res.status(500).send("Error creating admin");
@@ -180,11 +157,76 @@ const verifyPassword = async (req, res) => {
   }
 };
 
+// Get sign up page
+const getSignUpPage = async (req, res) => {
+  res.render("admin-signup", {
+    title: "SignUp Admin",
+  });
+};
+
+// // Express Validator
+// const { body, validationResult } = require("express-validator");
+
+// CREATE THE Validation rules
+const createAdminValidationRules = [
+  body("adminID").isInt().withMessage("Admin ID must be an integer").toInt(),
+  body("firstName")
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage("First name must not be empty"),
+  body("lastName")
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage("Last name must not be empty"),
+  body("email").trim().isEmail().withMessage("Invalid email address"),
+  body("password")
+    .trim()
+    .isLength({ min: 6 })
+    .withMessage("Password must be at least 6 characters long"),
+];
+
+// CREATE ADMIN AND VALIDATE INPUT
+const createAdmin = async (req, res, next) => {
+  // Check for validation errors
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    // If there are validation errors, render the form again with the errors
+
+    // Create an object to be sent into rendered webpage.
+    // const errorsObj = errors.errors.reduce((obj, error) => {
+    //   obj[error.path] = error.msg;
+    //   return obj;
+    // }, {});
+
+    const errorsObj = errors.errors.reduce((obj, error) => {
+      obj[error.path] = { value: error.value, msg: error.msg };
+      return obj;
+    }, {});
+    return res.render("admin-signup", {
+      title: "Sign-up Error",
+      errors: errorsObj,
+    });
+  }
+
+  //  Finally create the admin when there are no errors
+  try {
+    const { adminID, firstName, lastName, email, password } = await req.body;
+    Admin.createNewAdmin({
+      adminID,
+      firstName,
+      lastName,
+      email,
+      password,
+    });
+    res.redirect("/adminLogin"); // Redirect to login page after successful creation
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error creating admin");
+  }
+};
+
 // EXPORT MODULES
 module.exports = {
-  //   getHome,
-  //   getBookingPage,
-  //   getThankYouPage,
   getAll,
   getAdminDetails,
   getAdminPage,
@@ -193,4 +235,6 @@ module.exports = {
   deletedAdmin,
   createAdmin,
   verifyPassword,
+  getSignUpPage,
+  createAdminValidationRules,
 };

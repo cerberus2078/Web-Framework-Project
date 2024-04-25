@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin LogIn</title>
+</head>
+{{>header}}
+<body>
+    <div class="booking-page-container">
+    <h1>Admin SignUp</h1>
+    <div class="booking-text"><h4>Please fill in all of the fields below:</h4>
+    <p>{{loginCheck}}</p></div>
+    <form method="POST" action="/signup">
+        <div class="fields">
+
+<lable for="adminID">Admin ID:</lable>
+            <input class="adminId txtField" type="text" placeholder="{{#if errors.adminID.msg}}
+{{errors.adminID.value}}
+{{else}}
+ID
+{{/if}}" name="adminID" required>
+            {{errors.adminID.msg}}<br>
+
+            <lable for="firstName">First Name:</lable>
+            <input class="firstName txtField" type="text" placeholder="{{#if errors.firstName.msg}}
+{{errors.firstName.value}}
+{{else}}
+First Name
+{{/if}}" name="firstName" required>{{errors.firstName.msg}}
+            <br>
+            
+            <lable for="lastName">Last Name:</lable>
+            <input class="lastName txtField" type="text" placeholder="{{#if errors.lastName.msg}}
+{{errors.lastName.value}}
+{{else}}
+Last Name
+{{/if}}" name="lastName" required>{{errors.lastName.msg}}<br>
+
+            <lable for="email">Email:</lable>
+            <input class="email txtField" type="text" placeholder="{{#if errors.email.msg}}
+{{errors.email.value}}
+{{else}}
+Email
+{{/if}}" name="email" required>{{errors.email.msg}}<br>
+
+            <lable for="password">Password:</lable>
+            <input class="password txtField" type="password" placeholder="Password" name="password" required>{{errors.password.msg}}<br>
+        </div>
+        <button class="continue-button" type="submit" value="Admin signup" >SignUp</button> 
+         <a class="continue-button" href="/adminLogin">Back to Login</a>       
+    </form>
+
+</div>
+</body>
+{{>footer}}
+</html>
