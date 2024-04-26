@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
-// Database Functions Here (CRUD)
+///////////// Database Functions Here (CRUD) ///////////////////////
 
 // CREATE ONE BY USER_ID FUNCTION
 
@@ -86,18 +86,6 @@ const deleteOneUser = async (id) => {
     console.log(err);
   }
 };
-
-
-
-
-//------------ Email Function Testing Start ------------
-// https://www.npmjs.com/package/nodemailer-express-handlebars
-
-
-//------------ Email Function End ------------
-
-
-
 
 // Export
 module.exports = {
