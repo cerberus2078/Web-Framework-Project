@@ -1,7 +1,4 @@
-{{!-- this page cannot use style.css from public and throws an error --}}
-{{!-- I've hardcoded the style.css, but it still has the error --}}
-{{!-- trying to fix the error rn --}}
-{{!-- To-Do: make this page prettier --}}
+{{!-- CSS was hardcoded here --}}
 <link rel="stylesheet" href="/style.css"/>
 
 
@@ -14,24 +11,18 @@
 
         {{!-- getting one user from mongodb --}}
         <div>
-            <p>User ID: {{products.userID}}</p>
-            <p>Name: {{products.firstName}} {{user.lastName}}</p>
-            <p>Email: {{products.email}}</p>
-            <p>Phone: {{products.phoneNumber}}</p>
-            <p>Check-In Date: {{products.checkIn}}</p>
-            <p>Check-Out Date: {{products.checkOut}}</p>
+            <p><strong>User ID: </strong>{{products.userID}}</p>
+            <p><strong>Name: </strong>{{products.firstName}} {{products.lastName}}</p>
+            <p><strong>Email: </strong>{{products.email}}</p>
+            <p><strong>Phone: </strong>{{products.phoneNumber}}</p>
+            <p><strong>Check-In Date: </strong>{{products.checkIn}}</p>
+            <p><strong>Check-Out Date: </strong>{{products.checkOut}}</p>
         </div>
 
         {{!-- update user data --}}
         <form action="/adminpage" method="POST" autocomplete="off">
 
             <input type="hidden" name="userID" value="{{products.userID}}">
-
-            <div class="new-name">
-                <p>New First Name:</p>
-                <input class="name field" id="new-name-date" placeholder="New First Name" name="firstName"
-                    type="new-name" value="{{products.firstName}}" title="">
-            </div>
 
             <div class="new-checkIn">
                 <p>New Check-In Date:</p>
@@ -45,14 +36,13 @@
                     type="new-checkOut" value="{{products.checkOut}}" title="">
             </div>
 
-            {{!-- To-Do: fix the delete buttn from this page --}}
             <button class="delete-button" href="/adminpage" onclick="confirmDelete({{products.userID}})">Delete</button>
             <button class="update-button" type="submit">Update User</button>
         </form>
 
     </div>
     <br>
-    <a class="button" href="/adminpage">Go Back</a>
+    <a class="continue-button" href="/adminpage">Go Back</a>
 
         <script>
             function confirmDelete(userID) {
