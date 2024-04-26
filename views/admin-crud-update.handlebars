@@ -11,12 +11,12 @@
 
         {{!-- getting one user from mongodb --}}
         <div>
-            <p><strong>User ID: </strong>{{products.userID}}</p>
-            <p><strong>Name: </strong>{{products.firstName}} {{products.lastName}}</p>
-            <p><strong>Email: </strong>{{products.email}}</p>
-            <p><strong>Phone: </strong>{{products.phoneNumber}}</p>
-            <p><strong>Check-In Date: </strong>{{products.checkIn}}</p>
-            <p><strong>Check-Out Date: </strong>{{products.checkOut}}</p>
+            <p><strong>User ID: </strong>{{users.userID}}</p>
+            <p><strong>Name: </strong>{{users.firstName}} {{users.lastName}}</p>
+            <p><strong>Email: </strong>{{users.email}}</p>
+            <p><strong>Phone: </strong>{{users.phoneNumber}}</p>
+            <p><strong>Check-In Date: </strong>{{users.checkIn}}</p>
+            <p><strong>Check-Out Date: </strong>{{users.checkOut}}</p>
         </div>
 
         {{!-- update user data --}}
@@ -36,7 +36,7 @@
                     type="new-checkOut" value="{{users.checkOut}}" title="">
             </div>
 
-            <button class="delete-button" href="/adminpage" onclick="confirmDelete({{products.userID}})">Delete</button>
+            <button class="delete-button" href="/adminpage" onclick="confirmDelete({{users.userID}})">Delete</button>
             <button class="update-button" type="submit">Update User</button>
         </form>
 
