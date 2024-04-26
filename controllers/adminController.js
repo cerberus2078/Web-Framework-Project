@@ -194,7 +194,6 @@ const createAdmin = async (req, res, next) => {
       obj[error.path] = { value: error.value, msg: error.msg };
       return obj;
     }, {});
-    console.log(errorsObj);
     return res.render("admin-signup", {
       title: "Sign-up Error",
       errors: errorsObj,
