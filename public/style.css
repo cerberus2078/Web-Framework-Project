@@ -168,7 +168,6 @@ h3 {
   box-shadow: 0 6px 5px -5px rgb(167, 167, 167);
 }
 
-/* booking form */
 .fill-up-booking-form-button {
   background-color: #b6f0fc;
   color: black;
@@ -509,6 +508,20 @@ tr {
 .new-date {
   display: flex;
   flex-direction: row;
+  align-items: center;
+}
+
+.fieldset{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.fields{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
 }
 

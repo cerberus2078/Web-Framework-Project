@@ -9,11 +9,10 @@
 {{>header}}
 <main>
 <section id="blue-container" class="booking-page-container">
-    <h1>Booking form</h1>
+    <legend><h1>Booking form</h1></legend>
     <p class="booking-text"><h4>Please fill in all of the fields below:</h4></p>
     <form method="POST" action="/users">
-        <fieldset>
-            <legend>User Information</legend>
+        <fieldset class="fieldset">
             <div class="fields">
                 <lable for="userID">User ID:</lable>
                 <input class="userId txtField" type="text" aria-label="Id" name="userID" required><br>
