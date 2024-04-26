@@ -2,7 +2,7 @@
     <div id="header" class="header">
         <a class="link-logo" aria-label="SynnySideSuncastle logo" href="/"><img id="logo" class="logo-header-footer" src="images/logo2.png"></a>
         <div class="right-side-header">
-            <button id="toggle-high-contrast">High Contrast Mode</button>
+            <button id="toggle-high-contrast" aria-live="assertive" aria-atomic="true">High Contrast Mode is off</button>
             <a class="login-page-button link" href="/adminLogin">Admin Login</a>
         </div>
     </div>
@@ -14,6 +14,15 @@
 
             // toggle high contrast for the body
             document.body.classList.toggle("high-contrast");
+
+            // detect the button for the screen reader
+            var isHighContrast = document.body.classList.contains("high-contrast");
+
+            // change the button text depending on if it is turned on or off
+            var buttonText = isHighContrast ? "High Contrast Mode is on" : "High Contrast Mode is off";
+
+            // change the button text
+            toggleButton.textContent = buttonText;
 
             // blue selectors go bye bye
             var blueContainer = document.getElementById('blue-container');
