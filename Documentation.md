@@ -12,6 +12,9 @@ For Emails:
 npm install nodemailer
 npm install nodemailer-express-handlebars
 
+For Express-validator
+npm install express-validator
+
 PACKAGE.JSON/SCRIPTS - "dev": "nodemon index",
 
 MONGODB
