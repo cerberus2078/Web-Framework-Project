@@ -1,4 +1,4 @@
-// Creating a 'users' module for hanlding routes for Users.
+// Creating a 'admins' module for hanlding routes for Admins.
 
 const express = require("express");
 const router = express.Router();
@@ -13,11 +13,11 @@ router.post("/admins", adminController.verifyPassword);
 
 // Route for Admin SignUp
 router.get("/admin-signup", adminController.getSignUpPage);
-// router.post("/signup", adminController.createAdmin);
+
+// Route for creating and validating the Admin after signing up
 router.post(
   "/signup",
   adminController.createAdminValidationRules,
-  //   adminController.validate,
   adminController.createAdmin
 );
 

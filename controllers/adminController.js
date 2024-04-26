@@ -41,7 +41,6 @@ const getUpdatePage = async (req, res) => {
       throw new Error("Invalid admin ID");
     }
     const admin = await Admin.getOneAdmin(id);
-    // console.log(admin);
     res.render("admin-crud-update", {
       title: "UpdatePage",
       products: admin.toJSON(),
@@ -145,8 +144,6 @@ const verifyPassword = async (req, res) => {
     if (admin && email === admin.email && password === admin.password) {
       res.redirect("/adminpage");
     } else {
-      //   res.send("FUCK OFF YOU'RE AN IMPOSTER");
-
       res.render("adminLogin", {
         title: "Login Fail",
         loginCheck: "Password/ email was wrong, try again",
@@ -193,15 +190,11 @@ const createAdmin = async (req, res, next) => {
     // If there are validation errors, render the form again with the errors
 
     // Create an object to be sent into rendered webpage.
-    // const errorsObj = errors.errors.reduce((obj, error) => {
-    //   obj[error.path] = error.msg;
-    //   return obj;
-    // }, {});
-
     const errorsObj = errors.errors.reduce((obj, error) => {
       obj[error.path] = { value: error.value, msg: error.msg };
       return obj;
     }, {});
+    console.log(errorsObj);
     return res.render("admin-signup", {
       title: "Sign-up Error",
       errors: errorsObj,

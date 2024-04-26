@@ -53,7 +53,7 @@ const getThankYouPage = async (req, res) => {
   res.render("thank-you", {
     title: "Thank You",
     companyName: "Sunny Side Sandcastle",
-    products: user,
+    users: user,
   });
 };
 
@@ -65,14 +65,14 @@ const getAdminLoginPage = (req, res) => {
   });
 };
 
-// GET ADMIN
+// GET ADMIN Page (Renders all admin users)
 const getAdminPage = async (req, res) => {
   try {
     const allUsers = await User.getAllUsers();
     res.render("admin", {
       title: "Admin",
       companyName: "Sunny Side Sandcastle",
-      products: allUsers,
+      users: allUsers,
     });
   } catch (error) {
     console.log(error);
@@ -92,7 +92,7 @@ const getUpdatePage = async (req, res) => {
     // console.log(user);
     res.render("admin-crud-update", {
       title: "UpdatePage",
-      products: user.toJSON(),
+      users: user.toJSON(),
       //   users: user,
     });
   } catch (err) {
@@ -190,11 +190,10 @@ const createUser = async (req, res) => {
     res.render("thank-you", {
       title: "Thank You",
       companyName: "Sunny Side Sandcastle",
-      products: newUser.toJSON(),
+      users: newUser.toJSON(),
     });
 
     // Redirect to the thank-you page
-    // return res.redirect("/thank-you");
   } catch (error) {
     console.error("Error creating user:", error);
     return res.status(500).send("Error creating user");
@@ -207,7 +206,7 @@ const getAll = async (req, res) => {
     const allUsers = await User.getAllUsers();
     console.log(allUsers);
     res.render("allusers", {
-      products: allUsers,
+      users: allUsers,
     });
   } catch (error) {
     console.log(error);
@@ -224,7 +223,7 @@ const getUserDetails = async (req, res) => {
     }
     const user = await User.getOneUser(id);
     res.render("edem", {
-      products: user.toJSON(),
+      users: user.toJSON(),
     });
   } catch (err) {
     res.status(404).json({

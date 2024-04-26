@@ -6,14 +6,6 @@ const router = express.Router();
 // IMPORT MODULE FROM /controllers/userController.js
 const userController = require("../controllers/userController");
 
-//////////-- TESTING STAGE -- //////////
-// Get all users and render to allusers page
-router.get("/allusers", userController.getAll);
-// Route for finding one user by userID and rendering edem.handlebars
-router.get("/edem/:id", userController.getUserDetails);
-
-///////////-- END OF TESTING -- //////////////
-
 /////////// -- INSERT ROUTES HERE -- ///////////
 
 // Render the homepage
@@ -24,8 +16,8 @@ router.get("/booking", userController.getBookingPage);
 router.get("/room1", userController.getRoom1Page);
 // Route for room 2 page
 router.get("/room2", userController.getRoom2Page);
-// Route for Thank you page
-// router.get("/thank-you", userController.getThankYouPage);
+// Route for Thank you page (Unused now but needed for developing the thank webpage)
+router.get("/thank-you", userController.getThankYouPage);
 // Route for the admin login page
 router.get("/adminLogin", userController.getAdminLoginPage);
 // Route for the admin page

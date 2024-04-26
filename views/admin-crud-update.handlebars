@@ -1,7 +1,4 @@
-{{!-- this page cannot use style.css from public and throws an error --}}
-{{!-- I've hardcoded the style.css, but it still has the error --}}
-{{!-- trying to fix the error rn --}}
-{{!-- To-Do: make this page prettier --}}
+{{!-- CSS was hardcoded here --}}
 <link rel="stylesheet" href="/style.css"/>
 
 
@@ -9,50 +6,43 @@
 <div class="admin-page-container">
     <h1>ADMIN PAGE for {{companyName}} (views/admin-crud-update.handlebars) update + delete button with alert window
     </h1>
-    <h2>You can change the data of the user {{products.userID}} here:</h2>
+    <h2>You can change the data of the user {{users.userID}} here:</h2>
     <div class="admin-edit-container">
 
         {{!-- getting one user from mongodb --}}
         <div>
-            <p>User ID: {{products.userID}}</p>
-            <p>Name: {{products.firstName}} {{user.lastName}}</p>
-            <p>Email: {{products.email}}</p>
-            <p>Phone: {{products.phoneNumber}}</p>
-            <p>Check-In Date: {{products.checkIn}}</p>
-            <p>Check-Out Date: {{products.checkOut}}</p>
+            <p><strong>User ID: </strong>{{users.userID}}</p>
+            <p><strong>Name: </strong>{{users.firstName}} {{users.lastName}}</p>
+            <p><strong>Email: </strong>{{users.email}}</p>
+            <p><strong>Phone: </strong>{{users.phoneNumber}}</p>
+            <p><strong>Check-In Date: </strong>{{users.checkIn}}</p>
+            <p><strong>Check-Out Date: </strong>{{users.checkOut}}</p>
         </div>
 
         {{!-- update user data --}}
         <form action="/adminpage" method="POST" autocomplete="off">
 
-            <input type="hidden" name="userID" value="{{products.userID}}">
-
-            <div class="new-name">
-                <p>New First Name:</p>
-                <input class="name field" id="new-name-date" placeholder="New First Name" name="firstName"
-                    type="new-name" value="{{products.firstName}}" title="">
-            </div>
+            <input type="hidden" name="userID" value="{{users.userID}}">
 
             <div class="new-checkIn">
                 <p>New Check-In Date:</p>
                 <input class="checkIn field" id="new-checkIn" placeholder="New Check-In" name="checkIn"
-                    type="new-checkIn" value="{{products.checkIn}}" title="">
+                    type="new-checkIn" value="{{users.checkIn}}" title="">
             </div>
 
             <div class="new-checkOut">
                 <p>New Check-Out Date:</p>
                 <input class="checkOut field" id="new-checkOut" placeholder="New Check-Out" name="checkOut"
-                    type="new-checkOut" value="{{products.checkOut}}" title="">
+                    type="new-checkOut" value="{{users.checkOut}}" title="">
             </div>
 
-            {{!-- To-Do: fix the delete buttn from this page --}}
-            <button class="delete-button" href="/adminpage" onclick="confirmDelete({{products.userID}})">Delete</button>
+            <button class="delete-button" href="/adminpage" onclick="confirmDelete({{users.userID}})">Delete</button>
             <button class="update-button" type="submit">Update User</button>
         </form>
 
     </div>
     <br>
-    <a class="button" href="/adminpage">Go Back</a>
+    <a class="continue-button" href="/adminpage">Go Back</a>
 
         <script>
             function confirmDelete(userID) {

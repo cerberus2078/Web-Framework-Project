@@ -7,18 +7,24 @@
 </head>
 {{>header}}
 <body>
-    <div class="booking-page-container">
-    <h1>Admin Login</h1>
+    <div class="booking-page-container" tabindex="0">
+   
+    
     <div class="booking-text"><h4>Please fill in all of the fields below:</h4>
     <p>{{loginCheck}}</p></div>
     <form method="POST" action="/admins">
+    <fieldset>
+         <legend>Admin Login</legend>
         <div class="fields">
         <input class="email txtField" type="text" placeholder="Email" name="email" required><br>
         <input class="password txtField" type="password" placeholder="Password" name="password" required><br>
         </div>
         <button class="continue-button" type="submit" value="Admin login" name= 'action' onclick="/adminpageDELETE">Login</button>   
         <a class="continue-button" href="/admin-signup">Sign Up</a>   
+        </fieldset>
     </form>
+    
+     
 </div>
 </body>
 {{>footer}}
